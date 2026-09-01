@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>钟馗案件列表搜索 Demo</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<div id="zk-case-search-demo">
+  
+
+  <div class="zk-app">
+    <header class="zk-topbar">
+      <div class="zk-top-logo" aria-label="钟馗">
+        <span class="zk-logo-mark">钟</span>
+        <span class="zk-logo-copy"><strong>钟馗</strong><small>ZHONGKUI</small></span>
+      </div>
+      <nav class="zk-top-nav" aria-label="系统模块">
+        <button class="zk-top-tab active" type="button">图谱案<br>件</button>
+        <button class="zk-top-tab" type="button">监控任<br>务</button>
+        <button class="zk-top-tab" type="button">调证管<br>理</button>
+        <button class="zk-top-tab" type="button">自动追<br>缴</button>
+      </nav>
+      <div class="zk-top-right">
+        <span>报案咨询</span>
+        <span class="zk-user"><span class="zk-user-icon">●</span><span>b2mcVSbUre</span><span class="zk-user-chevron">⌄</span></span>
+      </div>
+    </header>
+
+    <div class="zk-body">
+      <aside class="zk-sidebar" aria-label="案件列表">
+        <button class="zk-create" type="button" data-demo-action="create"><span>⌂</span><span>创建图谱</span><span>›</span></button>
+
+        <div class="zk-list-head">
+          <div class="zk-list-title"><span class="zk-list-glyph">▦</span><span>案件列表</span><small id="zk-case-count">4 个案件</small></div>
+          <div class="zk-head-actions">
+            <button class="zk-icon-btn" type="button" title="搜索" aria-label="搜索" aria-controls="zk-search-view" aria-expanded="false" data-demo-action="toggle-search"><svg class="zk-action-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.2"></circle><path d="m15.5 15.5 4.2 4.2"></path></svg></button>
+            <button class="zk-icon-btn zk-add-btn" type="button" title="新增案件" aria-label="新增案件" data-demo-action="add-folder"><svg class="zk-action-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+          </div>
+        </div>
+
+        <div class="zk-tree-scroll" id="zk-tree-scroll">
+          <div id="zk-tree-mount"></div>
+        </div>
+
+        <div class="zk-search-view" id="zk-search-view" hidden>
+          <div class="zk-search-field">
+            <span class="zk-search-field-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.2"></circle><path d="m15.5 15.5 4.2 4.2"></path></svg></span>
+            <input class="zk-search-input" id="zk-search-input" type="text" placeholder="输入案件、地址、备注、便签等" aria-label="搜索案件、地址、备注和便签" autocomplete="off">
+            <button class="zk-search-clear" type="button" title="清空搜索" aria-label="清空搜索" data-demo-action="clear-search" hidden>×</button>
+          </div>
+          <button class="zk-search-submit" type="button" data-demo-action="run-search">搜索</button>
+        </div>
+        <div class="zk-context-menu" id="zk-graph-context-menu" role="menu" aria-label="图谱操作" hidden>
+          <button type="button" role="menuitem" data-demo-action="graph-menu" data-graph-menu-action="rename">重命名</button>
+          <button type="button" role="menuitem" data-demo-action="graph-menu" data-graph-menu-action="pin">置顶</button>
+          <button type="button" role="menuitem" data-demo-action="graph-menu" data-graph-menu-action="share">分享</button>
+          <button type="button" role="menuitem" data-demo-action="graph-menu" data-graph-menu-action="delete">删除</button>
+          <button type="button" role="menuitem" data-demo-action="graph-menu" data-graph-menu-action="move">移动</button>
+        </div>
+        <div class="zk-context-menu" id="zk-folder-context-menu" role="menu" aria-label="案件操作" hidden>
+          <button type="button" role="menuitem" data-demo-action="folder-menu" data-folder-menu-action="rename">重命名</button>
+          <button type="button" role="menuitem" data-demo-action="folder-menu" data-folder-menu-action="delete">删除</button>
+        </div>
+      </aside>
+
+      <main class="zk-main">
+        <div class="zk-main-head">
+          <div class="zk-breadcrumb">图谱案件 / <strong>关系图谱</strong></div>
+          <div class="zk-main-actions"><span class="zk-save-dot"></span><span>已保存</span></div>
+        </div>
+        <div id="zk-casesearch-canvas">
+          <div class="zk-canvas-top">
+            <div class="zk-canvas-context"><span class="zk-canvas-title" id="zk-canvas-title">图谱3</span><span class="zk-canvas-path" id="zk-canvas-path">测试案件</span></div>
+            <div class="zk-canvas-tools">
+              <button class="zk-tool" type="button">⌕ 查询</button>
+              <button class="zk-tool" type="button">▤ 便签</button>
+              <button class="zk-tool" type="button">⌗ 节点</button>
+              <button class="zk-tool" type="button">⊞ 地址</button>
+              <button class="zk-tool" type="button">☷ 筛选</button>
+            </div>
+            <div class="zk-canvas-right-tools">
+              <button class="zk-tool zk-tool-square" type="button" title="框选">⌑</button>
+              <button class="zk-tool zk-tool-square" type="button" title="下载">⇩</button>
+              <button class="zk-tool zk-tool-square" type="button" title="保存">▣</button>
+              <button class="zk-tool zk-tool-square" type="button" title="分享">↗</button>
+              <button class="zk-tool zk-tool-square" type="button" title="撤销">↶</button>
+              <button class="zk-tool zk-zoom" type="button" title="缩放">72%⌃⌄</button>
+              <button class="zk-tool zk-tool-square" type="button" title="全屏">⛶</button>
+            </div>
+          </div>
+          <div class="zk-canvas">
+            <div class="zk-canvas-grid"></div>
+            <svg class="zk-graph-svg" id="zk-graph-svg" viewBox="0 0 720 480" role="img" aria-label="关系图谱画布">
+            <defs>
+              <marker id="zk-arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#afbdce"></path></marker>
+            </defs>
+            <g class="zk-graph-default">
+            <path class="zk-edge" d="M360 236 L210 138" marker-end="url(#zk-arrow)"></path>
+            <path class="zk-edge" d="M360 236 L505 142" marker-end="url(#zk-arrow)"></path>
+            <path class="zk-edge" d="M360 236 L510 334" marker-end="url(#zk-arrow)"></path>
+            <path class="zk-edge" d="M360 236 L205 338" marker-end="url(#zk-arrow)"></path>
+            <text class="zk-edge-label" x="274" y="174">$28,420 · 16笔</text>
+            <text class="zk-edge-label" x="420" y="176">$8,960 · 6笔</text>
+            <text class="zk-edge-label" x="424" y="298">$4,210 · 3笔</text>
+            <text class="zk-edge-label" x="270" y="302">$1,820 · 2笔</text>
+            <circle class="zk-node start" cx="360" cy="236" r="43"></circle>
+            <circle class="zk-node-dot" cx="360" cy="226" r="6"></circle>
+            <text class="zk-node-label" x="360" y="252" text-anchor="middle">0x7A2F...91C4</text>
+            <text class="zk-node-sub" x="360" y="268" text-anchor="middle">起始地址 · BSC</text>
+            <circle class="zk-node" cx="210" cy="138" r="34"></circle>
+            <circle class="zk-node-dot" cx="210" cy="130" r="5"></circle>
+            <text class="zk-node-label" x="210" y="151" text-anchor="middle">0xF12A...2B88</text>
+            <text class="zk-node-sub" x="210" y="166" text-anchor="middle">BSC</text>
+            <circle class="zk-node" cx="505" cy="142" r="34"></circle>
+            <circle class="zk-node-dot" cx="505" cy="134" r="5"></circle>
+            <text class="zk-node-label" x="505" y="155" text-anchor="middle">0x3C8D...A70E</text>
+            <text class="zk-node-sub" x="505" y="170" text-anchor="middle">BSC</text>
+            <circle class="zk-node" cx="510" cy="334" r="34"></circle>
+            <circle class="zk-node-dot" cx="510" cy="326" r="5"></circle>
+            <text class="zk-node-label" x="510" y="347" text-anchor="middle">0xA011...3D42</text>
+            <text class="zk-node-sub" x="510" y="362" text-anchor="middle">BSC</text>
+            <circle class="zk-node" cx="205" cy="338" r="34"></circle>
+            <circle class="zk-node-dot" cx="205" cy="330" r="5"></circle>
+            <text class="zk-node-label" x="205" y="351" text-anchor="middle">0x91D0...77E1</text>
+            <text class="zk-node-sub" x="205" y="366" text-anchor="middle">BSC</text>
+            </g>
+            <g class="zk-graph-history">
+              <path class="zk-edge zk-history-edge" data-history-tx="0x22aa...0912" d="M132 92 C250 94 390 210 594 350" marker-end="url(#zk-arrow)"></path>
+              <path class="zk-edge zk-history-edge" data-history-tx="0x22aa...0912" d="M142 250 C260 252 405 290 594 350" marker-end="url(#zk-arrow)"></path>
+              <path class="zk-edge zk-history-edge" data-history-tx="0x22aa...0912" d="M292 158 C385 190 485 270 594 350" marker-end="url(#zk-arrow)"></path>
+              <path class="zk-edge zk-history-edge" data-history-tx="0x22aa...0912" d="M392 86 C465 125 535 240 594 350" marker-end="url(#zk-arrow)"></path>
+              <text class="zk-history-label" x="248" y="124" transform="rotate(25 248 124)">$0 · 1笔</text>
+              <text class="zk-history-label" x="310" y="278" transform="rotate(12 310 278)">$0 · 1笔</text>
+              <text class="zk-history-label" x="450" y="232" transform="rotate(38 450 232)">$0 · 1笔</text>
+              <text class="zk-history-label" x="495" y="210" transform="rotate(56 495 210)">$5 · 2笔</text>
+
+              <g>
+                <rect class="zk-history-sticky" data-history-keyword="历史资金图谱要点 重点关注资金流向 涉及多个中转地址 需进一步核查" x="26" y="324" width="180" height="112" rx="5"></rect>
+                <text class="zk-history-sticky-title" x="38" y="347">历史资金图谱要点：</text>
+                <text class="zk-history-sticky-line" x="38" y="370">1. 重点关注资金流向</text>
+                <text class="zk-history-sticky-line" x="38" y="392">2. 涉及多个中转地址</text>
+                <text class="zk-history-sticky-line" x="38" y="414">3. 需进一步核查</text>
+              </g>
+
+              <g class="zk-history-address-node" data-history-address="0x91D0...77E1" data-history-keyword="历史线索">
+                <circle class="zk-history-node" cx="132" cy="82" r="28"></circle>
+                <path class="zk-history-icon" d="M119 70h17l7 7v20h-24zM136 70v8h7M123 84h15M123 90h15M123 96h9"></path>
+                <text class="zk-node-label" x="132" y="119" text-anchor="middle">0x91D0...77E1</text>
+              </g>
+              <g class="zk-history-address-node" data-history-address="0xa7...ec09">
+                <circle class="zk-history-node" cx="142" cy="240" r="28"></circle>
+                <path class="zk-history-icon" d="M129 228h17l7 7v20h-24zM146 228v8h7M133 242h15M133 248h15M133 254h9"></path>
+                <text class="zk-node-label" x="142" y="277" text-anchor="middle">0xa7...ec09</text>
+              </g>
+              <g class="zk-history-address-node" data-history-address="0xcf...a439">
+                <circle class="zk-history-node" cx="292" cy="148" r="28"></circle>
+                <path class="zk-history-icon" d="M279 136h17l7 7v20h-24zM296 136v8h7M283 150h15M283 156h15M283 162h9"></path>
+                <text class="zk-node-label" x="292" y="185" text-anchor="middle">0xcf...a439</text>
+              </g>
+              <g class="zk-history-address-node" data-history-address="0xbb...e22c">
+                <circle class="zk-history-node" cx="392" cy="76" r="28"></circle>
+                <path class="zk-history-icon" d="M379 64h17l7 7v20h-24zM396 64v8h7M383 78h15M383 84h15M383 90h9"></path>
+                <text class="zk-node-label" x="392" y="113" text-anchor="middle">0xbb...e22c</text>
+              </g>
+              <g class="zk-history-address-node" data-history-address="0xfc...e662">
+                <circle class="zk-history-target" cx="600" cy="356" r="35"></circle>
+                <circle class="zk-history-target-mark" cx="600" cy="356" r="22"></circle>
+                <circle class="zk-history-target-mark" cx="600" cy="356" r="12"></circle>
+                <path class="zk-history-target-mark" d="M600 356l15-15M600 356h-1"></path>
+                <text class="zk-node-label" x="600" y="407" text-anchor="middle">0xfc...e662</text>
+                <text class="zk-node-sub" x="600" y="422" text-anchor="middle">历史资金流起始地址 · BSC</text>
+              </g>
+            </g>
+            </svg>
+            <div class="zk-canvas-note">点击左侧图谱，在此处打开</div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div class="zk-toast" id="zk-toast" role="status"></div>
+    <div class="zk-modal-layer" id="zk-new-case-modal" hidden>
+      <section class="zk-modal" role="dialog" aria-modal="true" aria-labelledby="zk-new-case-title">
+        <div class="zk-modal-head">
+          <div class="zk-modal-title" id="zk-new-case-title">新增案件</div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-new-case">×</button>
+        </div>
+        <div class="zk-modal-body">
+          <label class="zk-field-label" for="zk-new-case-name">案件名称<span class="zk-required" aria-hidden="true">*</span></label>
+          <input class="zk-modal-input" id="zk-new-case-name" type="text" placeholder="请输入案件名称" autocomplete="off">
+          <div class="zk-field-error" id="zk-new-case-name-error" hidden>请输入案件名称</div>
+          <div class="zk-parent-label"><span class="zk-field-label" style="margin:0">所属目录<span class="zk-required" aria-hidden="true">*</span></span><span class="zk-parent-hint">可选择任意上级案件</span></div>
+          <div class="zk-parent-picker">
+            <div class="zk-parent-search">
+              <span class="zk-parent-search-icon" aria-hidden="true">⌕</span>
+              <input class="zk-parent-search-input" id="zk-parent-search" type="text" placeholder="搜索目录名称" autocomplete="off">
+              <button class="zk-parent-search-clear" type="button" title="清空目录搜索" aria-label="清空目录搜索" data-demo-action="clear-parent-search" hidden>×</button>
+            </div>
+            <div class="zk-parent-tree" id="zk-parent-tree"></div>
+          </div>
+          <div class="zk-field-error" id="zk-parent-error" hidden>请选择所属目录</div>
+        </div>
+        <div class="zk-modal-foot">
+          <button class="zk-secondary-btn" type="button" data-demo-action="close-new-case">取消</button>
+          <button class="zk-primary-btn" type="button" data-demo-action="submit-new-case">确定</button>
+        </div>
+      </section>
+    </div>
+    <div class="zk-modal-layer zk-graph-rename-layer" id="zk-rename-graph-modal" hidden>
+      <section class="zk-modal zk-graph-rename-modal" role="dialog" aria-modal="true" aria-labelledby="zk-rename-graph-title">
+        <div class="zk-modal-head zk-graph-modal-head">
+          <div class="zk-graph-dialog-title"><span class="zk-dialog-info" aria-hidden="true">i</span><span class="zk-modal-title" id="zk-rename-graph-title">重命名</span></div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-rename-graph">×</button>
+        </div>
+        <div class="zk-modal-body zk-graph-rename-body">
+          <div class="zk-graph-rename-field">
+            <input class="zk-modal-input" id="zk-rename-graph-name" type="text" maxlength="20" placeholder="请输入图谱名称" aria-label="图谱名称" autocomplete="off">
+            <span class="zk-graph-name-count" id="zk-graph-name-count">0/20</span>
+          </div>
+          <div class="zk-field-error" id="zk-rename-graph-name-error" hidden>请输入图谱名称</div>
+        </div>
+        <div class="zk-modal-foot">
+          <button class="zk-secondary-btn" type="button" data-demo-action="close-rename-graph">取消</button>
+          <button class="zk-primary-btn" type="button" data-demo-action="submit-rename-graph">确定</button>
+        </div>
+      </section>
+    </div>
+    <div class="zk-modal-layer zk-graph-rename-layer" id="zk-rename-folder-modal" hidden>
+      <section class="zk-modal zk-graph-rename-modal" role="dialog" aria-modal="true" aria-labelledby="zk-rename-folder-title">
+        <div class="zk-modal-head zk-graph-modal-head">
+          <div class="zk-graph-dialog-title"><span class="zk-dialog-info" aria-hidden="true">i</span><span class="zk-modal-title" id="zk-rename-folder-title">重命名</span></div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-rename-folder">×</button>
+        </div>
+        <div class="zk-modal-body zk-graph-rename-body">
+          <div class="zk-graph-rename-field">
+            <input class="zk-modal-input" id="zk-rename-folder-name" type="text" maxlength="20" placeholder="请输入案件名称" aria-label="案件名称" autocomplete="off">
+            <span class="zk-graph-name-count" id="zk-folder-name-count">0/20</span>
+          </div>
+          <div class="zk-field-error" id="zk-rename-folder-name-error" hidden>请输入案件名称</div>
+        </div>
+        <div class="zk-modal-foot">
+          <button class="zk-secondary-btn" type="button" data-demo-action="close-rename-folder">取消</button>
+          <button class="zk-primary-btn" type="button" data-demo-action="submit-rename-folder">确定</button>
+        </div>
+      </section>
+    </div>
+    <div class="zk-modal-layer" id="zk-delete-folder-modal" hidden>
+      <section class="zk-modal zk-delete-modal" role="dialog" aria-modal="true" aria-labelledby="zk-delete-folder-title">
+        <div class="zk-modal-head zk-graph-modal-head">
+          <div class="zk-graph-dialog-title"><span class="zk-dialog-info danger" aria-hidden="true">i</span><span class="zk-modal-title" id="zk-delete-folder-title">确认删除</span></div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-delete-folder">×</button>
+        </div>
+        <div class="zk-graph-modal-body">
+          <div class="zk-delete-message">删除案件后，下方的图谱也将被删除</div>
+        </div>
+        <div class="zk-modal-foot">
+          <button class="zk-secondary-btn" type="button" data-demo-action="close-delete-folder">取消</button>
+          <button class="zk-danger-btn" type="button" data-demo-action="submit-delete-folder">确认</button>
+        </div>
+      </section>
+    </div>
+    <div class="zk-modal-layer" id="zk-share-graph-modal" hidden>
+      <section class="zk-modal zk-share-modal" role="dialog" aria-modal="true" aria-labelledby="zk-share-graph-title">
+        <div class="zk-modal-head zk-graph-modal-head">
+          <div class="zk-modal-title" id="zk-share-graph-title">分享</div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-share-graph">×</button>
+        </div>
+        <div class="zk-graph-modal-body">
+          <div class="zk-share-row">图谱名称：<span id="zk-share-graph-name"></span></div>
+          <div class="zk-share-row">分享链接：<span class="zk-share-link" id="zk-share-graph-link"></span></div>
+        </div>
+        <div class="zk-share-foot">
+          <button class="zk-primary-btn" type="button" data-demo-action="copy-share-link">复制链接</button>
+        </div>
+      </section>
+    </div>
+    <div class="zk-modal-layer" id="zk-delete-graph-modal" hidden>
+      <section class="zk-modal zk-delete-modal" role="dialog" aria-modal="true" aria-labelledby="zk-delete-graph-title">
+        <div class="zk-modal-head zk-graph-modal-head">
+          <div class="zk-graph-dialog-title"><span class="zk-dialog-info danger" aria-hidden="true">i</span><span class="zk-modal-title" id="zk-delete-graph-title">确认删除</span></div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-delete-graph">×</button>
+        </div>
+        <div class="zk-graph-modal-body">
+          <div class="zk-delete-message">删除此图谱：<span id="zk-delete-graph-name"></span></div>
+        </div>
+        <div class="zk-modal-foot">
+          <button class="zk-secondary-btn" type="button" data-demo-action="close-delete-graph">取消</button>
+          <button class="zk-danger-btn" type="button" data-demo-action="submit-delete-graph">确认</button>
+        </div>
+      </section>
+    </div>
+    <div class="zk-modal-layer" id="zk-move-graph-modal" hidden>
+      <section class="zk-modal zk-move-modal" role="dialog" aria-modal="true" aria-labelledby="zk-move-graph-title">
+        <div class="zk-modal-head zk-graph-modal-head">
+          <div class="zk-modal-title" id="zk-move-graph-title">图谱移动</div>
+          <button class="zk-modal-close" type="button" title="关闭" aria-label="关闭" data-demo-action="close-move-graph">×</button>
+        </div>
+        <div class="zk-graph-modal-body">
+          <div class="zk-move-field"><span class="zk-move-label"><span class="zk-required" aria-hidden="true">*</span>图谱名称</span><div class="zk-move-field-control"><span class="zk-move-value" id="zk-move-graph-name"></span></div></div>
+          <div class="zk-move-field">
+            <span class="zk-move-label"><span class="zk-required" aria-hidden="true">*</span>移动到案件</span>
+            <div class="zk-move-field-control">
+              <div class="zk-parent-picker zk-move-parent-picker" id="zk-move-parent-picker">
+                <div class="zk-parent-search">
+                  <span class="zk-parent-search-icon" aria-hidden="true">⌕</span>
+                  <input class="zk-parent-search-input" id="zk-move-parent-search" type="text" placeholder="搜索目录名称" aria-label="搜索移动目标目录" autocomplete="off">
+                  <button class="zk-parent-search-clear" type="button" title="清空目录搜索" aria-label="清空目录搜索" data-demo-action="clear-move-parent-search" hidden>×</button>
+                </div>
+                <div class="zk-parent-tree zk-move-parent-tree" id="zk-move-parent-tree"></div>
+              </div>
+              <div class="zk-field-error" id="zk-move-error" hidden>请选择目标案件</div>
+            </div>
+          </div>
+        </div>
+        <div class="zk-modal-foot">
+          <button class="zk-secondary-btn" type="button" data-demo-action="close-move-graph">取消</button>
+          <button class="zk-primary-btn" type="button" data-demo-action="submit-move-graph">确定</button>
+        </div>
+      </section>
+    </div>
+  </div>
+<script src="./app.js"></script>
+</div>
+
+<script src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script>
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =>
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest("[data-tooltip]")
+      : null;
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    document.removeEventListener("pointerover", handlePointerOpen);
+    document.removeEventListener("pointerout", handleLeave);
+    document.removeEventListener("focusin", handleFocusIn);
+    document.removeEventListener("focusout", handleLeave);
+    document.removeEventListener("keydown", handleKeyDown);
+    document.removeEventListener("contextmenu", handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener("pointerover", handlePointerOpen);
+  document.addEventListener("pointerout", handleLeave);
+  document.addEventListener("focusin", handleFocusIn);
+  document.addEventListener("focusout", handleLeave);
+  document.addEventListener("keydown", handleKeyDown);
+  document.addEventListener("contextmenu", handleContextMenu);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script>
+(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+</body>
+</html>
