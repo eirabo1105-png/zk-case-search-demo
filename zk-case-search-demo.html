@@ -1,0 +1,2869 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Case List Search Demo</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Case List Search Demo" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Case List Search Demo&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: var(--border-radius-lg, 12.5px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress {
+  display: flex;
+  height: 6px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 6px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: 16px !important;
+  height: 16px !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html,body{height:100%;margin:0;padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;zk-case-search-demo&quot;&gt;
+  &lt;style&gt;
+    #zk-case-search-demo {
+      --zk-ink: #1f2a3d;
+      --zk-muted: #718096;
+      --zk-light-muted: #a1acbc;
+      --zk-blue: #1769ff;
+      --zk-blue-soft: #edf4ff;
+      --zk-blue-line: #cfe0ff;
+      --zk-surface: #ffffff;
+      --zk-page: #f1f1f1;
+      --zk-border: #e5e5e5;
+      --zk-border-dark: #cfd4dc;
+      --zk-green: #1c9b67;
+      --zk-orange: #d88725;
+      width: 100%;
+      min-width: 1040px;
+      height: 100%;
+      overflow: hidden;
+      color: var(--zk-ink);
+      background: var(--zk-page);
+      font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;PingFang SC&quot;, &quot;Microsoft YaHei&quot;, sans-serif;
+      font-size: 14px;
+    }
+
+    #zk-case-search-demo * { box-sizing: border-box; }
+    #zk-case-search-demo button,
+    #zk-case-search-demo input,
+    #zk-case-search-demo select { font: inherit; }
+    #zk-case-search-demo button { cursor: pointer; }
+
+    #zk-case-search-demo .zk-app {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      background: var(--zk-surface);
+    }
+
+    #zk-case-search-demo .zk-topbar {
+      display: flex;
+      align-items: center;
+      height: 72px;
+      padding: 0 18px 0 24px;
+      border-bottom: 1px solid #ededed;
+      background: #fff;
+    }
+
+    #zk-case-search-demo .zk-top-logo {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 270px;
+      color: #1769ff;
+    }
+
+    #zk-case-search-demo .zk-logo-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 3px solid #1769ff;
+      border-radius: 50%;
+      color: #1769ff;
+      font-size: 21px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    #zk-case-search-demo .zk-logo-copy { display: flex; flex-direction: column; line-height: 1; }
+    #zk-case-search-demo .zk-logo-copy strong { font-size: 19px; letter-spacing: 1px; }
+    #zk-case-search-demo .zk-logo-copy small { margin-top: 4px; font-size: 9px; font-weight: 700; letter-spacing: 1px; }
+    #zk-case-search-demo .zk-top-nav { display: flex; align-items: stretch; height: 100%; gap: 12px; }
+    #zk-case-search-demo .zk-top-tab {
+      width: 104px;
+      margin: 12px 0;
+      border: 0;
+      border-radius: 5px;
+      color: #202020;
+      background: transparent;
+      font-size: 16px;
+      line-height: 1.25;
+    }
+    #zk-case-search-demo .zk-top-tab.active,
+    #zk-case-search-demo .zk-top-tab:hover { background: #f0f0f0; }
+    #zk-case-search-demo .zk-top-right { display: flex; align-items: center; gap: 21px; margin-left: auto; color: #282828; font-size: 14px; }
+    #zk-case-search-demo .zk-user { display: flex; align-items: center; gap: 9px; }
+    #zk-case-search-demo .zk-user-icon { display: grid; width: 26px; height: 26px; place-items: center; border: 2px solid #202020; border-radius: 50%; font-size: 13px; font-weight: 700; }
+    #zk-case-search-demo .zk-user-chevron { color: #555; font-size: 16px; }
+
+    #zk-case-search-demo .zk-body {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      min-height: 0;
+      flex: 1;
+    }
+
+    #zk-case-search-demo .zk-sidebar {
+      position: relative;
+      display: flex;
+      min-width: 0;
+      min-height: 0;
+      flex-direction: column;
+      border-right: 1px solid var(--zk-border);
+      background: #fff;
+    }
+
+    #zk-case-search-demo .zk-create {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      margin: 18px 7px 14px;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      color: var(--zk-ink);
+      background: var(--zk-blue-soft);
+      font-size: 16px;
+      font-weight: 650;
+      text-align: left;
+    }
+
+    #zk-case-search-demo .zk-create:hover { border-color: var(--zk-blue-line); }
+    #zk-case-search-demo .zk-create span:first-child { color: #222; font-size: 24px; line-height: 1; }
+    #zk-case-search-demo .zk-create span:nth-child(2) { flex: 1; margin-left: 11px; color: var(--zk-ink); }
+    #zk-case-search-demo .zk-create span:last-child { color: #222; font-size: 26px; line-height: 1; }
+
+    #zk-case-search-demo .zk-list-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 50px;
+      padding: 0 14px 0 18px;
+      border-top: 0;
+      border-bottom: 1px solid var(--zk-border);
+      background: #fff;
+    }
+
+    #zk-case-search-demo .zk-list-title { display: flex; align-items: center; gap: 10px; font-size: 17px; font-weight: 650; }
+    #zk-case-search-demo .zk-list-glyph { color: #202020; font-size: 19px; line-height: 1; }
+    #zk-case-search-demo .zk-list-title small { display: none; color: var(--zk-light-muted); font-size: 12px; font-weight: 500; }
+    #zk-case-search-demo .zk-head-actions { display: flex; align-items: center; gap: 5px; }
+
+    #zk-case-search-demo .zk-icon-btn,
+    #zk-case-search-demo .zk-text-icon-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      color: var(--zk-muted);
+      background: transparent;
+    }
+
+    #zk-case-search-demo .zk-icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      padding: 0;
+      font-size: 0;
+    }
+
+    #zk-case-search-demo .zk-icon-btn:hover { color: var(--zk-blue); background: var(--zk-blue-soft); }
+    #zk-case-search-demo .zk-add-btn { color: var(--zk-blue); }
+    #zk-case-search-demo .zk-action-icon { display: block; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    #zk-case-search-demo .zk-tree-scroll { order: 3; min-height: 0; flex: 1 1 auto; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain; padding: 8px 6px 20px; scrollbar-color: #c7d0dc transparent; scrollbar-width: thin; }
+    #zk-case-search-demo .zk-tree-scroll::-webkit-scrollbar { width: 6px; }
+    #zk-case-search-demo .zk-tree-scroll::-webkit-scrollbar-thumb { border-radius: 6px; background: #c7d0dc; }
+    #zk-case-search-demo .zk-tree-scroll::-webkit-scrollbar-track { background: transparent; }
+    #zk-case-search-demo .zk-tree-section-label { padding: 7px 12px 5px; color: #a2a2a2; font-size: 12px; font-weight: 500; }
+    #zk-case-search-demo .zk-tree-row {
+      position: relative;
+      display: flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 0 7px 0 6px;
+      border-radius: 4px;
+      color: var(--zk-ink);
+    }
+    #zk-case-search-demo .zk-tree-row:hover { background: #f1f5fb; }
+    #zk-case-search-demo .zk-tree-row[data-tree-type=&quot;graph&quot;] { cursor: pointer; }
+    #zk-case-search-demo .zk-tree-row.is-selected { color: var(--zk-blue); background: var(--zk-blue-soft); }
+    #zk-case-search-demo .zk-tree-row.is-folder-open { background: #f1f1f1; }
+    #zk-case-search-demo .zk-tree-row.is-search-hit { background: #f4f8ff; }
+    #zk-case-search-demo .zk-tree-row.is-search-hit .zk-tree-name { color: var(--zk-blue); font-weight: 650; }
+    #zk-case-search-demo .zk-tree-row[data-tree-level]:not([data-tree-level=&quot;0&quot;])::before { position: absolute; top: 0; bottom: 0; left: var(--zk-tree-guide-left); width: 1px; background: #dce3eb; content: &#x27;&#x27;; }
+    #zk-case-search-demo .zk-tree-row[data-tree-level]:not([data-tree-level=&quot;0&quot;])::after { position: absolute; top: 50%; left: var(--zk-tree-guide-left); width: 18px; height: 1px; background: #dce3eb; content: &#x27;&#x27;; }
+    #zk-case-search-demo .zk-tree-toggle {
+      flex: 0 0 24px;
+      width: 24px;
+      height: 26px;
+      margin-left: 7px;
+      border: 0;
+      color: #262626;
+      background: transparent;
+      font-size: 17px;
+    }
+    #zk-case-search-demo .zk-tree-toggle.is-empty { pointer-events: none; visibility: hidden; }
+    #zk-case-search-demo .zk-tree-row[data-tree-type=&quot;graph&quot;] .zk-tree-toggle { visibility: hidden; margin-left: 0; }
+    #zk-case-search-demo .zk-tree-icon { display: inline-grid; width: 23px; height: 22px; margin-right: 8px; place-items: center; color: #aaa; font-size: 19px; }
+    #zk-case-search-demo .zk-tree-icon.folder { position: relative; display: inline-block; width: 20px; height: 15px; margin-right: 10px; border: 2px solid #b5b5b5; border-radius: 2px; font-size: 0; }
+    #zk-case-search-demo .zk-tree-icon.folder::before { position: absolute; top: -5px; left: -2px; width: 8px; height: 5px; border: 2px solid #b5b5b5; border-bottom: 0; border-radius: 2px 2px 0 0; content: &#x27;&#x27;; }
+    #zk-case-search-demo .zk-tree-icon.graph { display: inline-flex; flex: 0 0 22px; width: 22px; height: 22px; margin-right: 7px; color: var(--zk-blue); font-size: 0; }
+    #zk-case-search-demo .zk-tree-icon.graph svg { display: block; width: 20px; height: 20px; }
+    #zk-case-search-demo .zk-tree-name { min-width: 0; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 16px; }
+    #zk-case-search-demo .zk-context-menu { position: absolute; z-index: 18; width: 156px; padding: 6px 0; border: 1px solid #edf0f4; border-radius: 5px; background: #fff; box-shadow: 0 8px 20px rgba(30, 42, 60, .16); }
+    #zk-case-search-demo .zk-context-menu button { display: flex; align-items: center; width: 100%; height: 40px; padding: 0 18px; border: 0; color: #242424; background: transparent; font-size: 15px; text-align: left; }
+    #zk-case-search-demo .zk-context-menu button:hover { color: var(--zk-blue); background: #f3f7ff; }
+    #zk-case-search-demo .zk-context-menu button:focus-visible { outline: 2px solid var(--zk-blue-line); outline-offset: -2px; }
+    #zk-case-search-demo .zk-tree-meta { margin-left: 7px; color: var(--zk-light-muted); font-size: 11px; }
+    #zk-case-search-demo .zk-folder-add-graph { display: inline-flex; flex: 0 0 28px; align-items: center; justify-content: center; width: 28px; height: 28px; margin-left: 4px; padding: 0; border: 0; border-radius: 5px; color: var(--zk-blue); background: transparent; }
+    #zk-case-search-demo .zk-folder-add-graph:hover { background: var(--zk-blue-soft); }
+    #zk-case-search-demo .zk-folder-add-graph:focus-visible { outline: 2px solid var(--zk-blue-line); outline-offset: 1px; }
+    #zk-case-search-demo .zk-folder-add-icon { display: block; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    #zk-case-search-demo .zk-pinned-empty { display: flex; align-items: center; justify-content: center; height: 104px; color: #b8b8b8; font-size: 14px; }
+    #zk-case-search-demo .zk-search-empty { padding: 42px 24px; color: var(--zk-light-muted); text-align: center; line-height: 1.6; }
+
+    #zk-case-search-demo .zk-search-view {
+      order: 2;
+      width: 100%;
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--zk-border);
+      background: #fff;
+    }
+    #zk-case-search-demo .zk-search-field { display: flex; min-width: 0; flex: 1; align-items: center; height: 38px; border: 1px solid var(--zk-border-dark); border-radius: 7px; color: #95a4b9; background: #fbfcfe; }
+    #zk-case-search-demo .zk-search-field:focus-within { border-color: var(--zk-blue); background: #fff; box-shadow: 0 0 0 3px rgba(23, 105, 255, .1); }
+    #zk-case-search-demo .zk-search-field-icon { display: inline-flex; flex: 0 0 32px; align-items: center; justify-content: center; color: #9aa8bb; }
+    #zk-case-search-demo .zk-search-field-icon svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    #zk-case-search-demo .zk-search-input { min-width: 0; flex: 1; height: 100%; padding: 0 4px 0 0; border: 0; outline: none; color: #59677a; background: transparent; font-size: 12px; }
+    #zk-case-search-demo .zk-search-input::placeholder { color: #a5afbd; opacity: 1; }
+    #zk-case-search-demo .zk-search-clear { flex: 0 0 28px; width: 28px; height: 28px; margin-right: 4px; padding: 0; border: 0; border-radius: 5px; color: #9aa5b4; background: transparent; font-size: 17px; line-height: 1; }
+    #zk-case-search-demo .zk-search-clear:hover { color: var(--zk-blue); background: var(--zk-blue-soft); }
+    #zk-case-search-demo .zk-search-submit { flex: 0 0 58px; height: 38px; padding: 0; border: 1px solid var(--zk-blue); border-radius: 7px; color: #fff; background: var(--zk-blue); font-size: 13px; }
+    #zk-case-search-demo .zk-search-submit:hover { background: #0c56dd; }
+    #zk-case-search-demo .zk-secondary-btn,
+    #zk-case-search-demo .zk-primary-btn { height: 34px; padding: 0 15px; border-radius: 7px; font-size: 13px; }
+    #zk-case-search-demo .zk-secondary-btn { border: 1px solid var(--zk-border-dark); color: var(--zk-muted); background: #fff; }
+    #zk-case-search-demo .zk-secondary-btn:hover { border-color: var(--zk-blue-line); color: var(--zk-blue); }
+    #zk-case-search-demo .zk-primary-btn { border: 1px solid var(--zk-blue); color: #fff; background: var(--zk-blue); }
+    #zk-case-search-demo .zk-primary-btn:hover { background: #0c56dd; }
+
+    #zk-case-search-demo .zk-main { min-width: 0; background: #ededed; }
+    #zk-case-search-demo .zk-main-head { display: none; }
+    #zk-case-search-demo .zk-breadcrumb { color: var(--zk-muted); font-size: 13px; }
+    #zk-case-search-demo .zk-breadcrumb strong { color: var(--zk-ink); font-weight: 650; }
+    #zk-case-search-demo .zk-main-actions { display: flex; align-items: center; gap: 9px; color: var(--zk-muted); font-size: 12px; }
+    #zk-case-search-demo .zk-save-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--zk-green); }
+    #zk-casesearch-canvas { position: relative; height: 100%; overflow: hidden; }
+    #zk-case-search-demo .zk-canvas-top { position: absolute; z-index: 2; top: 24px; left: 24px; display: flex; align-items: center; gap: 8px; }
+    #zk-case-search-demo .zk-canvas-context { display: none; }
+    #zk-case-search-demo .zk-canvas-title { display: none; }
+    #zk-case-search-demo .zk-canvas-path { display: none; }
+    #zk-case-search-demo .zk-canvas-tools { display: flex; align-items: center; gap: 4px; }
+    #zk-case-search-demo .zk-canvas-right-tools { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+    #zk-case-search-demo .zk-tool-square { min-width: 42px; width: 42px; padding: 0; font-size: 20px; }
+    #zk-case-search-demo .zk-zoom { min-width: 74px; font-size: 13px; }
+    #zk-case-search-demo .zk-tool { min-width: 56px; height: 42px; padding: 0 12px; border: 1px solid #e4e4e4; border-radius: 5px; color: #242424; background: #fff; box-shadow: 0 4px 10px rgba(0,0,0,.04); font-size: 14px; }
+    #zk-case-search-demo .zk-tool:hover { color: var(--zk-blue); border-color: var(--zk-blue-line); background: #fff; }
+    #zk-case-search-demo .zk-canvas { position: absolute; inset: 0; background: #ededed; }
+    #zk-case-search-demo .zk-canvas-grid { position: absolute; inset: 0; background: #ededed; }
+    #zk-case-search-demo .zk-graph-svg { position: absolute; inset: 75px 45px 28px 35px; width: calc(100% - 80px); height: calc(100% - 103px); }
+    #zk-case-search-demo .zk-graph-history { display: none; }
+    #zk-case-search-demo .zk-graph-svg.is-history .zk-graph-default { display: none; }
+    #zk-case-search-demo .zk-graph-svg.is-history .zk-graph-history { display: block; }
+    #zk-case-search-demo .zk-history-node { fill: #fff; stroke: #c3cad3; stroke-width: 2; }
+    #zk-case-search-demo .zk-history-node.is-search-hit { stroke: var(--zk-blue); stroke-width: 3; }
+    #zk-case-search-demo .zk-history-icon { fill: none; stroke: #697582; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    #zk-case-search-demo .zk-history-target { fill: var(--zk-blue); stroke: #eaf2ff; stroke-width: 5; }
+    #zk-case-search-demo .zk-history-target.is-search-hit { stroke: var(--zk-blue); stroke-width: 3; }
+    #zk-case-search-demo .zk-history-target-mark { fill: none; stroke: #fff; stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+    #zk-case-search-demo .zk-history-edge.is-search-hit { stroke: var(--zk-blue); stroke-width: 3; }
+    #zk-case-search-demo .zk-history-sticky.is-search-hit { stroke: var(--zk-blue); stroke-width: 2.5; }
+    #zk-case-search-demo .zk-history-label { fill: #4b5968; font-size: 11px; }
+    #zk-case-search-demo .zk-history-sticky { fill: #fff; stroke: #bfc7d1; stroke-width: 1.5; }
+    #zk-case-search-demo .zk-history-sticky-title,
+    #zk-case-search-demo .zk-history-sticky-line { fill: #3d4752; font-size: 11px; }
+    #zk-case-search-demo .zk-history-sticky-title { font-weight: 650; }
+    #zk-case-search-demo .zk-edge { stroke: #afbdce; stroke-width: 2; fill: none; }
+    #zk-case-search-demo .zk-edge-label { fill: #7b899b; font-size: 12px; }
+    #zk-case-search-demo .zk-node { fill: #fff; stroke: #7fa4dd; stroke-width: 2; }
+    #zk-case-search-demo .zk-node.start { fill: #eaf2ff; stroke: var(--zk-blue); }
+    #zk-case-search-demo .zk-node-dot { fill: var(--zk-blue); }
+    #zk-case-search-demo .zk-node-label { fill: var(--zk-ink); font-size: 12px; font-weight: 600; }
+    #zk-case-search-demo .zk-node-sub { fill: #8492a5; font-size: 10px; }
+    #zk-case-search-demo .zk-canvas-note { position: absolute; right: 24px; bottom: 20px; padding: 7px 10px; border: 1px solid #ddd; border-radius: 6px; color: #8b8b8b; background: rgba(255,255,255,.8); font-size: 12px; }
+
+    #zk-case-search-demo .zk-toast { position: absolute; z-index: 13; top: 62px; left: 50%; display: none; align-items: center; gap: 10px; min-height: 50px; transform: translateX(-50%); padding: 0 20px; border-radius: 8px; color: #273140; background: #fff; box-shadow: 0 10px 30px rgba(30, 42, 60, .18); font-size: 14px; white-space: nowrap; }
+    #zk-case-search-demo .zk-toast.show { display: block; }
+    #zk-case-search-demo .zk-toast.show { display: flex; }
+    #zk-case-search-demo .zk-toast-check { display: inline-flex; align-items: center; justify-content: center; width: 25px; height: 25px; border-radius: 50%; color: #fff; background: #16bd6b; font-size: 16px; font-weight: 700; }
+    #zk-case-search-demo .zk-modal-layer { position: absolute; z-index: 12; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(20, 28, 40, .28); }
+    #zk-case-search-demo .zk-modal { width: 480px; border-radius: 8px; background: #fff; box-shadow: 0 18px 50px rgba(20, 35, 60, .2); }
+    #zk-case-search-demo .zk-graph-rename-layer { z-index: 14; align-items: flex-start; justify-content: flex-start; background: transparent; pointer-events: none; }
+    #zk-case-search-demo .zk-graph-rename-modal { width: 442px; margin: 14px 0 0 14px; pointer-events: auto; box-shadow: 0 12px 30px rgba(20, 35, 60, .18); }
+    #zk-case-search-demo .zk-graph-dialog-title { display: flex; align-items: center; gap: 10px; }
+    #zk-case-search-demo .zk-dialog-info { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; color: #fff; background: var(--zk-blue); font-size: 17px; font-weight: 700; line-height: 1; }
+    #zk-case-search-demo .zk-dialog-info.danger { background: #ff4d55; }
+    #zk-case-search-demo .zk-graph-rename-body { padding: 17px 20px 8px; }
+    #zk-case-search-demo .zk-graph-rename-field { position: relative; }
+    #zk-case-search-demo .zk-graph-rename-field .zk-modal-input { padding-right: 56px; }
+    #zk-case-search-demo .zk-graph-name-count { position: absolute; right: 12px; bottom: 10px; color: #aeb4bd; font-size: 12px; pointer-events: none; }
+    #zk-case-search-demo .zk-graph-modal-head { height: 58px; }
+    #zk-case-search-demo .zk-graph-modal-body { min-height: 190px; padding: 22px 28px; }
+    #zk-case-search-demo .zk-share-modal { width: 720px; }
+    #zk-case-search-demo .zk-share-modal .zk-graph-modal-body { min-height: 210px; }
+    #zk-case-search-demo .zk-share-row { margin-bottom: 20px; color: #242424; font-size: 16px; line-height: 1.6; }
+    #zk-case-search-demo .zk-share-link { overflow-wrap: anywhere; color: #242424; }
+    #zk-case-search-demo .zk-share-foot { display: flex; justify-content: flex-end; padding: 0 28px 24px; }
+    #zk-case-search-demo .zk-danger-btn { height: 34px; padding: 0 15px; border: 1px solid #ff4d55; border-radius: 7px; color: #fff; background: #ff4d55; font-size: 13px; }
+    #zk-case-search-demo .zk-danger-btn:hover { background: #e33b45; }
+    #zk-case-search-demo .zk-delete-modal { width: 442px; }
+    #zk-case-search-demo .zk-delete-modal .zk-graph-modal-body { min-height: 80px; padding-top: 15px; padding-bottom: 8px; }
+    #zk-case-search-demo .zk-delete-message { color: #4b5564; font-size: 16px; }
+    #zk-case-search-demo .zk-move-modal { width: 560px; }
+    #zk-case-search-demo .zk-move-modal .zk-graph-modal-body { min-height: 330px; padding: 22px 36px 10px; }
+    #zk-case-search-demo .zk-move-field { display: grid; grid-template-columns: 102px minmax(0, 1fr); align-items: start; gap: 14px; margin-bottom: 24px; color: #242424; font-size: 15px; }
+    #zk-case-search-demo .zk-move-field:last-child { margin-bottom: 0; }
+    #zk-case-search-demo .zk-move-label { padding-top: 10px; text-align: right; }
+    #zk-case-search-demo .zk-move-field-control { min-width: 0; }
+    #zk-case-search-demo .zk-move-value { min-width: 0; height: 38px; padding: 0 11px; border: 1px solid var(--zk-border-dark); border-radius: 6px; color: var(--zk-ink); background: #fff; font-size: 14px; }
+    #zk-case-search-demo .zk-move-value { display: flex; align-items: center; }
+    #zk-case-search-demo .zk-move-parent-picker { width: 100%; height: 236px; margin-top: 0; }
+    #zk-case-search-demo .zk-move-parent-picker.is-invalid { border-color: #e5484d; }
+    #zk-case-search-demo .zk-move-parent-tree { height: 192px; max-height: none; overflow-y: auto; }
+    #zk-case-search-demo .zk-modal-head { display: flex; align-items: center; justify-content: space-between; height: 58px; padding: 0 20px; border-bottom: 1px solid var(--zk-border); }
+    #zk-case-search-demo .zk-modal-title { font-size: 18px; font-weight: 700; }
+    #zk-case-search-demo .zk-modal-close { width: 30px; height: 30px; border: 0; border-radius: 5px; color: #7e8795; background: transparent; font-size: 22px; }
+    #zk-case-search-demo .zk-modal-close:hover { color: #202020; background: #f1f3f6; }
+    #zk-case-search-demo .zk-modal-body { padding: 20px; }
+    #zk-case-search-demo .zk-field-label { display: block; margin-bottom: 8px; color: #4b5564; font-size: 13px; font-weight: 650; }
+    #zk-case-search-demo .zk-modal-input { width: 100%; height: 38px; padding: 0 11px; border: 1px solid var(--zk-border-dark); border-radius: 6px; outline: none; color: var(--zk-ink); background: #fff; }
+    #zk-case-search-demo .zk-modal-input:focus { border-color: var(--zk-blue); box-shadow: 0 0 0 3px rgba(23, 105, 255, .1); }
+    #zk-case-search-demo .zk-modal-input.is-invalid { border-color: #e5484d; }
+    #zk-case-search-demo .zk-modal-input.is-invalid:focus { box-shadow: 0 0 0 3px rgba(229, 72, 77, .1); }
+    #zk-case-search-demo .zk-field-error { margin-top: 6px; color: #e5484d; font-size: 12px; line-height: 1.4; }
+    #zk-case-search-demo .zk-parent-label { display: flex; align-items: center; justify-content: space-between; margin-top: 18px; }
+    #zk-case-search-demo .zk-parent-hint { color: #a2aab6; font-size: 12px; font-weight: 400; }
+    #zk-case-search-demo .zk-required { margin-left: 3px; color: #e5484d; font-weight: 700; }
+    #zk-case-search-demo .zk-parent-picker { margin-top: 8px; overflow: hidden; border: 1px solid #d8e0eb; border-radius: 9px; background: #fff; box-shadow: 0 2px 7px rgba(35, 55, 85, .04); }
+    #zk-case-search-demo .zk-parent-picker.is-invalid { border-color: #e5484d; }
+    #zk-case-search-demo .zk-parent-search { position: relative; display: flex; align-items: center; height: 42px; border-bottom: 1px solid #e8edf3; background: #f8fafc; }
+    #zk-case-search-demo .zk-parent-search-icon { display: inline-flex; width: 34px; align-items: center; justify-content: center; color: #97a5b7; font-size: 15px; text-align: center; }
+    #zk-case-search-demo .zk-parent-search-input { min-width: 0; flex: 1; height: 100%; padding: 0 8px 0 0; border: 0; outline: none; color: var(--zk-ink); background: transparent; font-size: 13px; }
+    #zk-case-search-demo .zk-parent-search-input::placeholder { color: #aab4c2; }
+    #zk-case-search-demo .zk-parent-search-clear { width: 30px; height: 28px; margin-right: 5px; border: 0; border-radius: 4px; color: #9aa5b4; background: transparent; font-size: 17px; }
+    #zk-case-search-demo .zk-parent-search-clear:hover { color: var(--zk-blue); background: #eaf2ff; }
+    #zk-case-search-demo .zk-parent-tree { max-height: 216px; overflow: auto; padding: 8px 7px 9px; background: #fff; }
+    #zk-case-search-demo .zk-parent-node { width: 100%; }
+    #zk-case-search-demo .zk-parent-row { position: relative; display: flex; align-items: center; min-height: 38px; }
+    #zk-case-search-demo .zk-parent-toggle { position: relative; flex: 0 0 22px; width: 22px; height: 22px; padding: 0; border: 0; border-radius: 5px; color: #718198; background: transparent; font-size: 0; line-height: 1; }
+    #zk-case-search-demo .zk-parent-toggle::after { position: absolute; top: 7px; left: 7px; width: 6px; height: 6px; border-right: 1.8px solid currentColor; border-bottom: 1.8px solid currentColor; content: &#x27;&#x27;; transform: rotate(-45deg); }
+    #zk-case-search-demo .zk-parent-toggle.is-open::after { top: 5px; transform: rotate(45deg); }
+    #zk-case-search-demo .zk-parent-toggle:hover { color: var(--zk-blue); background: #eaf2ff; }
+    #zk-case-search-demo .zk-parent-toggle.is-empty { cursor: default; color: transparent; }
+    #zk-case-search-demo .zk-parent-toggle.is-empty::after { display: none; }
+    #zk-case-search-demo .zk-parent-option { display: flex; align-items: center; flex: 1; min-width: 0; min-height: 36px; padding: 0 9px; border: 0; border-radius: 6px; color: #465367; background: transparent; text-align: left; transition: background .15s ease, color .15s ease; }
+    #zk-case-search-demo .zk-parent-option:hover { background: #f7faff; }
+    #zk-case-search-demo .zk-parent-option.is-selected { color: var(--zk-blue); background: #edf4ff; font-weight: 650; }
+    #zk-case-search-demo .zk-parent-option.is-match:not(.is-selected) { color: var(--zk-blue); background: #f7faff; }
+    #zk-case-search-demo .zk-parent-check { display: inline-flex; flex: 0 0 18px; align-items: center; justify-content: center; width: 18px; height: 18px; margin-right: 9px; border: 1.5px solid #bdc9d9; border-radius: 50%; color: #fff; font-size: 11px; line-height: 1; }
+    #zk-case-search-demo .zk-parent-option.is-selected .zk-parent-check { border-color: var(--zk-blue); background: var(--zk-blue); }
+    #zk-case-search-demo .zk-parent-option.is-selected .zk-parent-check::after { content: &#x27;✓&#x27;; }
+    #zk-case-search-demo .zk-parent-folder { position: relative; display: inline-block; flex: 0 0 19px; width: 19px; height: 14px; margin-right: 8px; border: 1.5px solid #9aa8ba; border-radius: 2px; }
+    #zk-case-search-demo .zk-parent-folder::before { position: absolute; top: -5px; left: -1.5px; width: 8px; height: 5px; border: 1.5px solid #9aa8ba; border-bottom: 0; border-radius: 2px 2px 0 0; content: &#x27;&#x27;; }
+    #zk-case-search-demo .zk-parent-root-icon { display: inline-flex; flex: 0 0 19px; align-items: center; justify-content: center; width: 19px; height: 19px; margin-right: 8px; color: #718198; }
+    #zk-case-search-demo .zk-parent-root-icon svg { display: block; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    #zk-case-search-demo .zk-parent-empty { padding: 25px 12px; color: #a6afbb; font-size: 13px; text-align: center; }
+    #zk-case-search-demo .zk-modal-foot { display: flex; justify-content: flex-end; gap: 8px; padding: 14px 20px; border-top: 1px solid var(--zk-border); }
+    #zk-case-search-demo [hidden] { display: none !important; }
+  &lt;/style&gt;
+
+  &lt;div class=&quot;zk-app&quot;&gt;
+    &lt;header class=&quot;zk-topbar&quot;&gt;
+      &lt;div class=&quot;zk-top-logo&quot; aria-label=&quot;钟馗&quot;&gt;
+        &lt;span class=&quot;zk-logo-mark&quot;&gt;钟&lt;/span&gt;
+        &lt;span class=&quot;zk-logo-copy&quot;&gt;&lt;strong&gt;钟馗&lt;/strong&gt;&lt;small&gt;ZHONGKUI&lt;/small&gt;&lt;/span&gt;
+      &lt;/div&gt;
+      &lt;nav class=&quot;zk-top-nav&quot; aria-label=&quot;系统模块&quot;&gt;
+        &lt;button class=&quot;zk-top-tab active&quot; type=&quot;button&quot;&gt;图谱案&lt;br&gt;件&lt;/button&gt;
+        &lt;button class=&quot;zk-top-tab&quot; type=&quot;button&quot;&gt;监控任&lt;br&gt;务&lt;/button&gt;
+        &lt;button class=&quot;zk-top-tab&quot; type=&quot;button&quot;&gt;调证管&lt;br&gt;理&lt;/button&gt;
+        &lt;button class=&quot;zk-top-tab&quot; type=&quot;button&quot;&gt;自动追&lt;br&gt;缴&lt;/button&gt;
+      &lt;/nav&gt;
+      &lt;div class=&quot;zk-top-right&quot;&gt;
+        &lt;span&gt;报案咨询&lt;/span&gt;
+        &lt;span class=&quot;zk-user&quot;&gt;&lt;span class=&quot;zk-user-icon&quot;&gt;●&lt;/span&gt;&lt;span&gt;b2mcVSbUre&lt;/span&gt;&lt;span class=&quot;zk-user-chevron&quot;&gt;⌄&lt;/span&gt;&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/header&gt;
+
+    &lt;div class=&quot;zk-body&quot;&gt;
+      &lt;aside class=&quot;zk-sidebar&quot; aria-label=&quot;案件列表&quot;&gt;
+        &lt;button class=&quot;zk-create&quot; type=&quot;button&quot; data-demo-action=&quot;create&quot;&gt;&lt;span&gt;⌂&lt;/span&gt;&lt;span&gt;创建图谱&lt;/span&gt;&lt;span&gt;›&lt;/span&gt;&lt;/button&gt;
+
+        &lt;div class=&quot;zk-list-head&quot;&gt;
+          &lt;div class=&quot;zk-list-title&quot;&gt;&lt;span class=&quot;zk-list-glyph&quot;&gt;▦&lt;/span&gt;&lt;span&gt;案件列表&lt;/span&gt;&lt;small id=&quot;zk-case-count&quot;&gt;4 个案件&lt;/small&gt;&lt;/div&gt;
+          &lt;div class=&quot;zk-head-actions&quot;&gt;
+            &lt;button class=&quot;zk-icon-btn&quot; type=&quot;button&quot; title=&quot;搜索&quot; aria-label=&quot;搜索&quot; aria-controls=&quot;zk-search-view&quot; aria-expanded=&quot;false&quot; data-demo-action=&quot;toggle-search&quot;&gt;&lt;svg class=&quot;zk-action-icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;10.8&quot; cy=&quot;10.8&quot; r=&quot;6.2&quot;&gt;&lt;/circle&gt;&lt;path d=&quot;m15.5 15.5 4.2 4.2&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+            &lt;button class=&quot;zk-icon-btn zk-add-btn&quot; type=&quot;button&quot; title=&quot;新增案件&quot; aria-label=&quot;新增案件&quot; data-demo-action=&quot;add-folder&quot;&gt;&lt;svg class=&quot;zk-action-icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 5v14M5 12h14&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;zk-tree-scroll&quot; id=&quot;zk-tree-scroll&quot;&gt;
+          &lt;div id=&quot;zk-tree-mount&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class=&quot;zk-search-view&quot; id=&quot;zk-search-view&quot; hidden&gt;
+          &lt;div class=&quot;zk-search-field&quot;&gt;
+            &lt;span class=&quot;zk-search-field-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;circle cx=&quot;10.8&quot; cy=&quot;10.8&quot; r=&quot;6.2&quot;&gt;&lt;/circle&gt;&lt;path d=&quot;m15.5 15.5 4.2 4.2&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;
+            &lt;input class=&quot;zk-search-input&quot; id=&quot;zk-search-input&quot; type=&quot;text&quot; placeholder=&quot;输入案件、地址、备注、便签等&quot; aria-label=&quot;搜索案件、地址、备注和便签&quot; autocomplete=&quot;off&quot;&gt;
+            &lt;button class=&quot;zk-search-clear&quot; type=&quot;button&quot; title=&quot;清空搜索&quot; aria-label=&quot;清空搜索&quot; data-demo-action=&quot;clear-search&quot; hidden&gt;×&lt;/button&gt;
+          &lt;/div&gt;
+          &lt;button class=&quot;zk-search-submit&quot; type=&quot;button&quot; data-demo-action=&quot;run-search&quot;&gt;搜索&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-context-menu&quot; id=&quot;zk-graph-context-menu&quot; role=&quot;menu&quot; aria-label=&quot;图谱操作&quot; hidden&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;graph-menu&quot; data-graph-menu-action=&quot;rename&quot;&gt;重命名&lt;/button&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;graph-menu&quot; data-graph-menu-action=&quot;pin&quot;&gt;置顶&lt;/button&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;graph-menu&quot; data-graph-menu-action=&quot;share&quot;&gt;分享&lt;/button&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;graph-menu&quot; data-graph-menu-action=&quot;delete&quot;&gt;删除&lt;/button&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;graph-menu&quot; data-graph-menu-action=&quot;move&quot;&gt;移动&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-context-menu&quot; id=&quot;zk-folder-context-menu&quot; role=&quot;menu&quot; aria-label=&quot;案件操作&quot; hidden&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;folder-menu&quot; data-folder-menu-action=&quot;rename&quot;&gt;重命名&lt;/button&gt;
+          &lt;button type=&quot;button&quot; role=&quot;menuitem&quot; data-demo-action=&quot;folder-menu&quot; data-folder-menu-action=&quot;delete&quot;&gt;删除&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/aside&gt;
+
+      &lt;main class=&quot;zk-main&quot;&gt;
+        &lt;div class=&quot;zk-main-head&quot;&gt;
+          &lt;div class=&quot;zk-breadcrumb&quot;&gt;图谱案件 / &lt;strong&gt;关系图谱&lt;/strong&gt;&lt;/div&gt;
+          &lt;div class=&quot;zk-main-actions&quot;&gt;&lt;span class=&quot;zk-save-dot&quot;&gt;&lt;/span&gt;&lt;span&gt;已保存&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;zk-casesearch-canvas&quot;&gt;
+          &lt;div class=&quot;zk-canvas-top&quot;&gt;
+            &lt;div class=&quot;zk-canvas-context&quot;&gt;&lt;span class=&quot;zk-canvas-title&quot; id=&quot;zk-canvas-title&quot;&gt;图谱3&lt;/span&gt;&lt;span class=&quot;zk-canvas-path&quot; id=&quot;zk-canvas-path&quot;&gt;测试案件&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;zk-canvas-tools&quot;&gt;
+              &lt;button class=&quot;zk-tool&quot; type=&quot;button&quot;&gt;⌕ 查询&lt;/button&gt;
+              &lt;button class=&quot;zk-tool&quot; type=&quot;button&quot;&gt;▤ 便签&lt;/button&gt;
+              &lt;button class=&quot;zk-tool&quot; type=&quot;button&quot;&gt;⌗ 节点&lt;/button&gt;
+              &lt;button class=&quot;zk-tool&quot; type=&quot;button&quot;&gt;⊞ 地址&lt;/button&gt;
+              &lt;button class=&quot;zk-tool&quot; type=&quot;button&quot;&gt;☷ 筛选&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;zk-canvas-right-tools&quot;&gt;
+              &lt;button class=&quot;zk-tool zk-tool-square&quot; type=&quot;button&quot; title=&quot;框选&quot;&gt;⌑&lt;/button&gt;
+              &lt;button class=&quot;zk-tool zk-tool-square&quot; type=&quot;button&quot; title=&quot;下载&quot;&gt;⇩&lt;/button&gt;
+              &lt;button class=&quot;zk-tool zk-tool-square&quot; type=&quot;button&quot; title=&quot;保存&quot;&gt;▣&lt;/button&gt;
+              &lt;button class=&quot;zk-tool zk-tool-square&quot; type=&quot;button&quot; title=&quot;分享&quot;&gt;↗&lt;/button&gt;
+              &lt;button class=&quot;zk-tool zk-tool-square&quot; type=&quot;button&quot; title=&quot;撤销&quot;&gt;↶&lt;/button&gt;
+              &lt;button class=&quot;zk-tool zk-zoom&quot; type=&quot;button&quot; title=&quot;缩放&quot;&gt;72%⌃⌄&lt;/button&gt;
+              &lt;button class=&quot;zk-tool zk-tool-square&quot; type=&quot;button&quot; title=&quot;全屏&quot;&gt;⛶&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;zk-canvas&quot;&gt;
+            &lt;div class=&quot;zk-canvas-grid&quot;&gt;&lt;/div&gt;
+            &lt;svg class=&quot;zk-graph-svg&quot; id=&quot;zk-graph-svg&quot; viewBox=&quot;0 0 720 480&quot; role=&quot;img&quot; aria-label=&quot;关系图谱画布&quot;&gt;
+            &lt;defs&gt;
+              &lt;marker id=&quot;zk-arrow&quot; markerWidth=&quot;8&quot; markerHeight=&quot;8&quot; refX=&quot;7&quot; refY=&quot;4&quot; orient=&quot;auto&quot;&gt;&lt;path d=&quot;M0,0 L8,4 L0,8 Z&quot; fill=&quot;#afbdce&quot;&gt;&lt;/path&gt;&lt;/marker&gt;
+            &lt;/defs&gt;
+            &lt;g class=&quot;zk-graph-default&quot;&gt;
+            &lt;path class=&quot;zk-edge&quot; d=&quot;M360 236 L210 138&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+            &lt;path class=&quot;zk-edge&quot; d=&quot;M360 236 L505 142&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+            &lt;path class=&quot;zk-edge&quot; d=&quot;M360 236 L510 334&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+            &lt;path class=&quot;zk-edge&quot; d=&quot;M360 236 L205 338&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+            &lt;text class=&quot;zk-edge-label&quot; x=&quot;274&quot; y=&quot;174&quot;&gt;$28,420 · 16笔&lt;/text&gt;
+            &lt;text class=&quot;zk-edge-label&quot; x=&quot;420&quot; y=&quot;176&quot;&gt;$8,960 · 6笔&lt;/text&gt;
+            &lt;text class=&quot;zk-edge-label&quot; x=&quot;424&quot; y=&quot;298&quot;&gt;$4,210 · 3笔&lt;/text&gt;
+            &lt;text class=&quot;zk-edge-label&quot; x=&quot;270&quot; y=&quot;302&quot;&gt;$1,820 · 2笔&lt;/text&gt;
+            &lt;circle class=&quot;zk-node start&quot; cx=&quot;360&quot; cy=&quot;236&quot; r=&quot;43&quot;&gt;&lt;/circle&gt;
+            &lt;circle class=&quot;zk-node-dot&quot; cx=&quot;360&quot; cy=&quot;226&quot; r=&quot;6&quot;&gt;&lt;/circle&gt;
+            &lt;text class=&quot;zk-node-label&quot; x=&quot;360&quot; y=&quot;252&quot; text-anchor=&quot;middle&quot;&gt;0x7A2F...91C4&lt;/text&gt;
+            &lt;text class=&quot;zk-node-sub&quot; x=&quot;360&quot; y=&quot;268&quot; text-anchor=&quot;middle&quot;&gt;起始地址 · BSC&lt;/text&gt;
+            &lt;circle class=&quot;zk-node&quot; cx=&quot;210&quot; cy=&quot;138&quot; r=&quot;34&quot;&gt;&lt;/circle&gt;
+            &lt;circle class=&quot;zk-node-dot&quot; cx=&quot;210&quot; cy=&quot;130&quot; r=&quot;5&quot;&gt;&lt;/circle&gt;
+            &lt;text class=&quot;zk-node-label&quot; x=&quot;210&quot; y=&quot;151&quot; text-anchor=&quot;middle&quot;&gt;0xF12A...2B88&lt;/text&gt;
+            &lt;text class=&quot;zk-node-sub&quot; x=&quot;210&quot; y=&quot;166&quot; text-anchor=&quot;middle&quot;&gt;BSC&lt;/text&gt;
+            &lt;circle class=&quot;zk-node&quot; cx=&quot;505&quot; cy=&quot;142&quot; r=&quot;34&quot;&gt;&lt;/circle&gt;
+            &lt;circle class=&quot;zk-node-dot&quot; cx=&quot;505&quot; cy=&quot;134&quot; r=&quot;5&quot;&gt;&lt;/circle&gt;
+            &lt;text class=&quot;zk-node-label&quot; x=&quot;505&quot; y=&quot;155&quot; text-anchor=&quot;middle&quot;&gt;0x3C8D...A70E&lt;/text&gt;
+            &lt;text class=&quot;zk-node-sub&quot; x=&quot;505&quot; y=&quot;170&quot; text-anchor=&quot;middle&quot;&gt;BSC&lt;/text&gt;
+            &lt;circle class=&quot;zk-node&quot; cx=&quot;510&quot; cy=&quot;334&quot; r=&quot;34&quot;&gt;&lt;/circle&gt;
+            &lt;circle class=&quot;zk-node-dot&quot; cx=&quot;510&quot; cy=&quot;326&quot; r=&quot;5&quot;&gt;&lt;/circle&gt;
+            &lt;text class=&quot;zk-node-label&quot; x=&quot;510&quot; y=&quot;347&quot; text-anchor=&quot;middle&quot;&gt;0xA011...3D42&lt;/text&gt;
+            &lt;text class=&quot;zk-node-sub&quot; x=&quot;510&quot; y=&quot;362&quot; text-anchor=&quot;middle&quot;&gt;BSC&lt;/text&gt;
+            &lt;circle class=&quot;zk-node&quot; cx=&quot;205&quot; cy=&quot;338&quot; r=&quot;34&quot;&gt;&lt;/circle&gt;
+            &lt;circle class=&quot;zk-node-dot&quot; cx=&quot;205&quot; cy=&quot;330&quot; r=&quot;5&quot;&gt;&lt;/circle&gt;
+            &lt;text class=&quot;zk-node-label&quot; x=&quot;205&quot; y=&quot;351&quot; text-anchor=&quot;middle&quot;&gt;0x91D0...77E1&lt;/text&gt;
+            &lt;text class=&quot;zk-node-sub&quot; x=&quot;205&quot; y=&quot;366&quot; text-anchor=&quot;middle&quot;&gt;BSC&lt;/text&gt;
+            &lt;/g&gt;
+            &lt;g class=&quot;zk-graph-history&quot;&gt;
+              &lt;path class=&quot;zk-edge zk-history-edge&quot; data-history-tx=&quot;0x22aa...0912&quot; d=&quot;M132 92 C250 94 390 210 594 350&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+              &lt;path class=&quot;zk-edge zk-history-edge&quot; data-history-tx=&quot;0x22aa...0912&quot; d=&quot;M142 250 C260 252 405 290 594 350&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+              &lt;path class=&quot;zk-edge zk-history-edge&quot; data-history-tx=&quot;0x22aa...0912&quot; d=&quot;M292 158 C385 190 485 270 594 350&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+              &lt;path class=&quot;zk-edge zk-history-edge&quot; data-history-tx=&quot;0x22aa...0912&quot; d=&quot;M392 86 C465 125 535 240 594 350&quot; marker-end=&quot;url(#zk-arrow)&quot;&gt;&lt;/path&gt;
+              &lt;text class=&quot;zk-history-label&quot; x=&quot;248&quot; y=&quot;124&quot; transform=&quot;rotate(25 248 124)&quot;&gt;$0 · 1笔&lt;/text&gt;
+              &lt;text class=&quot;zk-history-label&quot; x=&quot;310&quot; y=&quot;278&quot; transform=&quot;rotate(12 310 278)&quot;&gt;$0 · 1笔&lt;/text&gt;
+              &lt;text class=&quot;zk-history-label&quot; x=&quot;450&quot; y=&quot;232&quot; transform=&quot;rotate(38 450 232)&quot;&gt;$0 · 1笔&lt;/text&gt;
+              &lt;text class=&quot;zk-history-label&quot; x=&quot;495&quot; y=&quot;210&quot; transform=&quot;rotate(56 495 210)&quot;&gt;$5 · 2笔&lt;/text&gt;
+
+              &lt;g&gt;
+                &lt;rect class=&quot;zk-history-sticky&quot; data-history-keyword=&quot;历史资金图谱要点 重点关注资金流向 涉及多个中转地址 需进一步核查&quot; x=&quot;26&quot; y=&quot;324&quot; width=&quot;180&quot; height=&quot;112&quot; rx=&quot;5&quot;&gt;&lt;/rect&gt;
+                &lt;text class=&quot;zk-history-sticky-title&quot; x=&quot;38&quot; y=&quot;347&quot;&gt;历史资金图谱要点：&lt;/text&gt;
+                &lt;text class=&quot;zk-history-sticky-line&quot; x=&quot;38&quot; y=&quot;370&quot;&gt;1. 重点关注资金流向&lt;/text&gt;
+                &lt;text class=&quot;zk-history-sticky-line&quot; x=&quot;38&quot; y=&quot;392&quot;&gt;2. 涉及多个中转地址&lt;/text&gt;
+                &lt;text class=&quot;zk-history-sticky-line&quot; x=&quot;38&quot; y=&quot;414&quot;&gt;3. 需进一步核查&lt;/text&gt;
+              &lt;/g&gt;
+
+              &lt;g class=&quot;zk-history-address-node&quot; data-history-address=&quot;0x91D0...77E1&quot; data-history-keyword=&quot;历史线索&quot;&gt;
+                &lt;circle class=&quot;zk-history-node&quot; cx=&quot;132&quot; cy=&quot;82&quot; r=&quot;28&quot;&gt;&lt;/circle&gt;
+                &lt;path class=&quot;zk-history-icon&quot; d=&quot;M119 70h17l7 7v20h-24zM136 70v8h7M123 84h15M123 90h15M123 96h9&quot;&gt;&lt;/path&gt;
+                &lt;text class=&quot;zk-node-label&quot; x=&quot;132&quot; y=&quot;119&quot; text-anchor=&quot;middle&quot;&gt;0x91D0...77E1&lt;/text&gt;
+              &lt;/g&gt;
+              &lt;g class=&quot;zk-history-address-node&quot; data-history-address=&quot;0xa7...ec09&quot;&gt;
+                &lt;circle class=&quot;zk-history-node&quot; cx=&quot;142&quot; cy=&quot;240&quot; r=&quot;28&quot;&gt;&lt;/circle&gt;
+                &lt;path class=&quot;zk-history-icon&quot; d=&quot;M129 228h17l7 7v20h-24zM146 228v8h7M133 242h15M133 248h15M133 254h9&quot;&gt;&lt;/path&gt;
+                &lt;text class=&quot;zk-node-label&quot; x=&quot;142&quot; y=&quot;277&quot; text-anchor=&quot;middle&quot;&gt;0xa7...ec09&lt;/text&gt;
+              &lt;/g&gt;
+              &lt;g class=&quot;zk-history-address-node&quot; data-history-address=&quot;0xcf...a439&quot;&gt;
+                &lt;circle class=&quot;zk-history-node&quot; cx=&quot;292&quot; cy=&quot;148&quot; r=&quot;28&quot;&gt;&lt;/circle&gt;
+                &lt;path class=&quot;zk-history-icon&quot; d=&quot;M279 136h17l7 7v20h-24zM296 136v8h7M283 150h15M283 156h15M283 162h9&quot;&gt;&lt;/path&gt;
+                &lt;text class=&quot;zk-node-label&quot; x=&quot;292&quot; y=&quot;185&quot; text-anchor=&quot;middle&quot;&gt;0xcf...a439&lt;/text&gt;
+              &lt;/g&gt;
+              &lt;g class=&quot;zk-history-address-node&quot; data-history-address=&quot;0xbb...e22c&quot;&gt;
+                &lt;circle class=&quot;zk-history-node&quot; cx=&quot;392&quot; cy=&quot;76&quot; r=&quot;28&quot;&gt;&lt;/circle&gt;
+                &lt;path class=&quot;zk-history-icon&quot; d=&quot;M379 64h17l7 7v20h-24zM396 64v8h7M383 78h15M383 84h15M383 90h9&quot;&gt;&lt;/path&gt;
+                &lt;text class=&quot;zk-node-label&quot; x=&quot;392&quot; y=&quot;113&quot; text-anchor=&quot;middle&quot;&gt;0xbb...e22c&lt;/text&gt;
+              &lt;/g&gt;
+              &lt;g class=&quot;zk-history-address-node&quot; data-history-address=&quot;0xfc...e662&quot;&gt;
+                &lt;circle class=&quot;zk-history-target&quot; cx=&quot;600&quot; cy=&quot;356&quot; r=&quot;35&quot;&gt;&lt;/circle&gt;
+                &lt;circle class=&quot;zk-history-target-mark&quot; cx=&quot;600&quot; cy=&quot;356&quot; r=&quot;22&quot;&gt;&lt;/circle&gt;
+                &lt;circle class=&quot;zk-history-target-mark&quot; cx=&quot;600&quot; cy=&quot;356&quot; r=&quot;12&quot;&gt;&lt;/circle&gt;
+                &lt;path class=&quot;zk-history-target-mark&quot; d=&quot;M600 356l15-15M600 356h-1&quot;&gt;&lt;/path&gt;
+                &lt;text class=&quot;zk-node-label&quot; x=&quot;600&quot; y=&quot;407&quot; text-anchor=&quot;middle&quot;&gt;0xfc...e662&lt;/text&gt;
+                &lt;text class=&quot;zk-node-sub&quot; x=&quot;600&quot; y=&quot;422&quot; text-anchor=&quot;middle&quot;&gt;历史资金流起始地址 · BSC&lt;/text&gt;
+              &lt;/g&gt;
+            &lt;/g&gt;
+            &lt;/svg&gt;
+            &lt;div class=&quot;zk-canvas-note&quot;&gt;点击左侧图谱，在此处打开&lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-toast&quot; id=&quot;zk-toast&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer&quot; id=&quot;zk-new-case-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-new-case-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-modal-title&quot; id=&quot;zk-new-case-title&quot;&gt;新增案件&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-new-case&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-body&quot;&gt;
+          &lt;label class=&quot;zk-field-label&quot; for=&quot;zk-new-case-name&quot;&gt;案件名称&lt;span class=&quot;zk-required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;&lt;/label&gt;
+          &lt;input class=&quot;zk-modal-input&quot; id=&quot;zk-new-case-name&quot; type=&quot;text&quot; placeholder=&quot;请输入案件名称&quot; autocomplete=&quot;off&quot;&gt;
+          &lt;div class=&quot;zk-field-error&quot; id=&quot;zk-new-case-name-error&quot; hidden&gt;请输入案件名称&lt;/div&gt;
+          &lt;div class=&quot;zk-parent-label&quot;&gt;&lt;span class=&quot;zk-field-label&quot; style=&quot;margin:0&quot;&gt;所属目录&lt;span class=&quot;zk-required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;zk-parent-hint&quot;&gt;可选择任意上级案件&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;zk-parent-picker&quot;&gt;
+            &lt;div class=&quot;zk-parent-search&quot;&gt;
+              &lt;span class=&quot;zk-parent-search-icon&quot; aria-hidden=&quot;true&quot;&gt;⌕&lt;/span&gt;
+              &lt;input class=&quot;zk-parent-search-input&quot; id=&quot;zk-parent-search&quot; type=&quot;text&quot; placeholder=&quot;搜索目录名称&quot; autocomplete=&quot;off&quot;&gt;
+              &lt;button class=&quot;zk-parent-search-clear&quot; type=&quot;button&quot; title=&quot;清空目录搜索&quot; aria-label=&quot;清空目录搜索&quot; data-demo-action=&quot;clear-parent-search&quot; hidden&gt;×&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;zk-parent-tree&quot; id=&quot;zk-parent-tree&quot;&gt;&lt;/div&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;zk-field-error&quot; id=&quot;zk-parent-error&quot; hidden&gt;请选择所属目录&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-foot&quot;&gt;
+          &lt;button class=&quot;zk-secondary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;close-new-case&quot;&gt;取消&lt;/button&gt;
+          &lt;button class=&quot;zk-primary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;submit-new-case&quot;&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer zk-graph-rename-layer&quot; id=&quot;zk-rename-graph-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal zk-graph-rename-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-rename-graph-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head zk-graph-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-graph-dialog-title&quot;&gt;&lt;span class=&quot;zk-dialog-info&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;zk-modal-title&quot; id=&quot;zk-rename-graph-title&quot;&gt;重命名&lt;/span&gt;&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-rename-graph&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-body zk-graph-rename-body&quot;&gt;
+          &lt;div class=&quot;zk-graph-rename-field&quot;&gt;
+            &lt;input class=&quot;zk-modal-input&quot; id=&quot;zk-rename-graph-name&quot; type=&quot;text&quot; maxlength=&quot;20&quot; placeholder=&quot;请输入图谱名称&quot; aria-label=&quot;图谱名称&quot; autocomplete=&quot;off&quot;&gt;
+            &lt;span class=&quot;zk-graph-name-count&quot; id=&quot;zk-graph-name-count&quot;&gt;0/20&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;zk-field-error&quot; id=&quot;zk-rename-graph-name-error&quot; hidden&gt;请输入图谱名称&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-foot&quot;&gt;
+          &lt;button class=&quot;zk-secondary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;close-rename-graph&quot;&gt;取消&lt;/button&gt;
+          &lt;button class=&quot;zk-primary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;submit-rename-graph&quot;&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer zk-graph-rename-layer&quot; id=&quot;zk-rename-folder-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal zk-graph-rename-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-rename-folder-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head zk-graph-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-graph-dialog-title&quot;&gt;&lt;span class=&quot;zk-dialog-info&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;zk-modal-title&quot; id=&quot;zk-rename-folder-title&quot;&gt;重命名&lt;/span&gt;&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-rename-folder&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-body zk-graph-rename-body&quot;&gt;
+          &lt;div class=&quot;zk-graph-rename-field&quot;&gt;
+            &lt;input class=&quot;zk-modal-input&quot; id=&quot;zk-rename-folder-name&quot; type=&quot;text&quot; maxlength=&quot;20&quot; placeholder=&quot;请输入案件名称&quot; aria-label=&quot;案件名称&quot; autocomplete=&quot;off&quot;&gt;
+            &lt;span class=&quot;zk-graph-name-count&quot; id=&quot;zk-folder-name-count&quot;&gt;0/20&lt;/span&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;zk-field-error&quot; id=&quot;zk-rename-folder-name-error&quot; hidden&gt;请输入案件名称&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-foot&quot;&gt;
+          &lt;button class=&quot;zk-secondary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;close-rename-folder&quot;&gt;取消&lt;/button&gt;
+          &lt;button class=&quot;zk-primary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;submit-rename-folder&quot;&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer&quot; id=&quot;zk-delete-folder-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal zk-delete-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-delete-folder-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head zk-graph-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-graph-dialog-title&quot;&gt;&lt;span class=&quot;zk-dialog-info danger&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;zk-modal-title&quot; id=&quot;zk-delete-folder-title&quot;&gt;确认删除&lt;/span&gt;&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-delete-folder&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-graph-modal-body&quot;&gt;
+          &lt;div class=&quot;zk-delete-message&quot;&gt;删除案件后，下方的图谱也将被删除&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-foot&quot;&gt;
+          &lt;button class=&quot;zk-secondary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;close-delete-folder&quot;&gt;取消&lt;/button&gt;
+          &lt;button class=&quot;zk-danger-btn&quot; type=&quot;button&quot; data-demo-action=&quot;submit-delete-folder&quot;&gt;确认&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer&quot; id=&quot;zk-share-graph-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal zk-share-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-share-graph-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head zk-graph-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-modal-title&quot; id=&quot;zk-share-graph-title&quot;&gt;分享&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-share-graph&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-graph-modal-body&quot;&gt;
+          &lt;div class=&quot;zk-share-row&quot;&gt;图谱名称：&lt;span id=&quot;zk-share-graph-name&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;zk-share-row&quot;&gt;分享链接：&lt;span class=&quot;zk-share-link&quot; id=&quot;zk-share-graph-link&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-share-foot&quot;&gt;
+          &lt;button class=&quot;zk-primary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;copy-share-link&quot;&gt;复制链接&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer&quot; id=&quot;zk-delete-graph-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal zk-delete-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-delete-graph-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head zk-graph-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-graph-dialog-title&quot;&gt;&lt;span class=&quot;zk-dialog-info danger&quot; aria-hidden=&quot;true&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;zk-modal-title&quot; id=&quot;zk-delete-graph-title&quot;&gt;确认删除&lt;/span&gt;&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-delete-graph&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-graph-modal-body&quot;&gt;
+          &lt;div class=&quot;zk-delete-message&quot;&gt;删除此图谱：&lt;span id=&quot;zk-delete-graph-name&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-foot&quot;&gt;
+          &lt;button class=&quot;zk-secondary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;close-delete-graph&quot;&gt;取消&lt;/button&gt;
+          &lt;button class=&quot;zk-danger-btn&quot; type=&quot;button&quot; data-demo-action=&quot;submit-delete-graph&quot;&gt;确认&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;zk-modal-layer&quot; id=&quot;zk-move-graph-modal&quot; hidden&gt;
+      &lt;section class=&quot;zk-modal zk-move-modal&quot; role=&quot;dialog&quot; aria-modal=&quot;true&quot; aria-labelledby=&quot;zk-move-graph-title&quot;&gt;
+        &lt;div class=&quot;zk-modal-head zk-graph-modal-head&quot;&gt;
+          &lt;div class=&quot;zk-modal-title&quot; id=&quot;zk-move-graph-title&quot;&gt;图谱移动&lt;/div&gt;
+          &lt;button class=&quot;zk-modal-close&quot; type=&quot;button&quot; title=&quot;关闭&quot; aria-label=&quot;关闭&quot; data-demo-action=&quot;close-move-graph&quot;&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-graph-modal-body&quot;&gt;
+          &lt;div class=&quot;zk-move-field&quot;&gt;&lt;span class=&quot;zk-move-label&quot;&gt;&lt;span class=&quot;zk-required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;图谱名称&lt;/span&gt;&lt;div class=&quot;zk-move-field-control&quot;&gt;&lt;span class=&quot;zk-move-value&quot; id=&quot;zk-move-graph-name&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;zk-move-field&quot;&gt;
+            &lt;span class=&quot;zk-move-label&quot;&gt;&lt;span class=&quot;zk-required&quot; aria-hidden=&quot;true&quot;&gt;*&lt;/span&gt;移动到案件&lt;/span&gt;
+            &lt;div class=&quot;zk-move-field-control&quot;&gt;
+              &lt;div class=&quot;zk-parent-picker zk-move-parent-picker&quot; id=&quot;zk-move-parent-picker&quot;&gt;
+                &lt;div class=&quot;zk-parent-search&quot;&gt;
+                  &lt;span class=&quot;zk-parent-search-icon&quot; aria-hidden=&quot;true&quot;&gt;⌕&lt;/span&gt;
+                  &lt;input class=&quot;zk-parent-search-input&quot; id=&quot;zk-move-parent-search&quot; type=&quot;text&quot; placeholder=&quot;搜索目录名称&quot; aria-label=&quot;搜索移动目标目录&quot; autocomplete=&quot;off&quot;&gt;
+                  &lt;button class=&quot;zk-parent-search-clear&quot; type=&quot;button&quot; title=&quot;清空目录搜索&quot; aria-label=&quot;清空目录搜索&quot; data-demo-action=&quot;clear-move-parent-search&quot; hidden&gt;×&lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class=&quot;zk-parent-tree zk-move-parent-tree&quot; id=&quot;zk-move-parent-tree&quot;&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;zk-field-error&quot; id=&quot;zk-move-error&quot; hidden&gt;请选择目标案件&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;zk-modal-foot&quot;&gt;
+          &lt;button class=&quot;zk-secondary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;close-move-graph&quot;&gt;取消&lt;/button&gt;
+          &lt;button class=&quot;zk-primary-btn&quot; type=&quot;button&quot; data-demo-action=&quot;submit-move-graph&quot;&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    (() =&gt; {
+      const root = document.getElementById(&#x27;zk-case-search-demo&#x27;);
+      if (!root) return;
+
+      const folders = [
+        {
+          type: &#x27;folder&#x27;, id: &#x27;test-case&#x27;, name: &#x27;测试案件&#x27;, children: [
+            { type: &#x27;graph&#x27;, id: &#x27;g-1&#x27;, name: &#x27;图谱1（5）&#x27;, fields: { address: [&#x27;0x7A2F...91C4&#x27;, &#x27;0x91D0...77E1&#x27;], tx: [&#x27;0x8d10...c021&#x27;], keyword: [&#x27;重点关注地址&#x27;], sticky: [&#x27;测试图谱&#x27;] } },
+            { type: &#x27;graph&#x27;, id: &#x27;g-2&#x27;, name: &#x27;图谱2&#x27;, fields: { address: [&#x27;0xF12A...2B88&#x27;], tx: [&#x27;0x12ab...8821&#x27;], keyword: [&#x27;待核查&#x27;], sticky: [&#x27;杭州&#x27;] } },
+            { type: &#x27;graph&#x27;, id: &#x27;g-3&#x27;, name: &#x27;图谱3&#x27;, fields: { address: [&#x27;0x7A2F...91C4&#x27;, &#x27;0x3C8D...A70E&#x27;], tx: [&#x27;0xabc1...79ef&#x27;], keyword: [&#x27;一次性中转地址&#x27;], sticky: [&#x27;专项研判&#x27;] } }
+          ]
+        },
+        {
+          type: &#x27;folder&#x27;, id: &#x27;wallet-case&#x27;, name: &#x27;钱包系统测试&#x27;, children: [
+            {
+              type: &#x27;folder&#x27;, id: &#x27;zj&#x27;, name: &#x27;浙江省&#x27;, children: [
+                { type: &#x27;graph&#x27;, id: &#x27;g-zj&#x27;, name: &#x27;浙江省资金关系&#x27;, fields: { address: [&#x27;0x7A2F...91C4&#x27;, &#x27;0x91D0...77E1&#x27;], tx: [&#x27;0x8d10...c021&#x27;], keyword: [&#x27;重点关注地址&#x27;], sticky: [&#x27;浙江省重点线索&#x27;] } },
+                {
+                  type: &#x27;folder&#x27;, id: &#x27;hz&#x27;, name: &#x27;杭州市公安局&#x27;, children: [
+                    { type: &#x27;graph&#x27;, id: &#x27;g-hz&#x27;, name: &#x27;杭州公安专题&#x27;, fields: { address: [&#x27;0x7A2F...91C4&#x27;, &#x27;0xF12A...2B88&#x27;], tx: [&#x27;0x12ab...8821&#x27;], keyword: [&#x27;重点关注&#x27;, &#x27;杭州中转地址&#x27;], sticky: [&#x27;杭州&#x27;] } },
+                    {
+                      type: &#x27;folder&#x27;, id: &#x27;fraud&#x27;, name: &#x27;电诈案件&#x27;, children: [
+                        { type: &#x27;graph&#x27;, id: &#x27;g-618&#x27;, name: &#x27;6.18 专项案件&#x27;, fields: { address: [&#x27;0x7A2F...91C4&#x27;, &#x27;0x3C8D...A70E&#x27;, &#x27;0xA011...3D42&#x27;], tx: [&#x27;0xabc1...79ef&#x27;, &#x27;0x6e90...a117&#x27;], keyword: [&#x27;一次性中转地址&#x27;], sticky: [&#x27;杭州&#x27;, &#x27;专项研判&#x27;] } },
+                        { type: &#x27;graph&#x27;, id: &#x27;g-old&#x27;, name: &#x27;历史资金流&#x27;, fields: { address: [&#x27;0x91D0...77E1&#x27;], tx: [&#x27;0x22aa...0912&#x27;], keyword: [&#x27;历史线索&#x27;], sticky: [&#x27;历史资金图谱要点&#x27;, &#x27;重点关注资金流向&#x27;, &#x27;涉及多个中转地址&#x27;, &#x27;需进一步核查&#x27;] } }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ];
+
+      const els = {
+        sidebar: root.querySelector(&#x27;.zk-sidebar&#x27;),
+        treeScroll: root.querySelector(&#x27;#zk-tree-scroll&#x27;),
+        treeMount: root.querySelector(&#x27;#zk-tree-mount&#x27;),
+        searchToggle: root.querySelector(&#x27;[data-demo-action=&quot;toggle-search&quot;]&#x27;),
+        searchView: root.querySelector(&#x27;#zk-search-view&#x27;),
+        searchInput: root.querySelector(&#x27;#zk-search-input&#x27;),
+        searchClear: root.querySelector(&#x27;[data-demo-action=&quot;clear-search&quot;]&#x27;),
+        graphSvg: root.querySelector(&#x27;#zk-graph-svg&#x27;),
+        canvasTitle: root.querySelector(&#x27;#zk-canvas-title&#x27;),
+        canvasPath: root.querySelector(&#x27;#zk-canvas-path&#x27;),
+        toast: root.querySelector(&#x27;#zk-toast&#x27;),
+        contextMenu: root.querySelector(&#x27;#zk-graph-context-menu&#x27;),
+        folderContextMenu: root.querySelector(&#x27;#zk-folder-context-menu&#x27;),
+        newCaseModal: root.querySelector(&#x27;#zk-new-case-modal&#x27;),
+        newCaseName: root.querySelector(&#x27;#zk-new-case-name&#x27;),
+        newCaseNameError: root.querySelector(&#x27;#zk-new-case-name-error&#x27;),
+        parentError: root.querySelector(&#x27;#zk-parent-error&#x27;),
+        parentPicker: root.querySelector(&#x27;.zk-parent-picker&#x27;),
+        parentSearch: root.querySelector(&#x27;#zk-parent-search&#x27;),
+        parentSearchClear: root.querySelector(&#x27;[data-demo-action=&quot;clear-parent-search&quot;]&#x27;),
+        parentTree: root.querySelector(&#x27;#zk-parent-tree&#x27;),
+        renameGraphModal: root.querySelector(&#x27;#zk-rename-graph-modal&#x27;),
+        renameGraphName: root.querySelector(&#x27;#zk-rename-graph-name&#x27;),
+        renameGraphNameError: root.querySelector(&#x27;#zk-rename-graph-name-error&#x27;),
+        graphNameCount: root.querySelector(&#x27;#zk-graph-name-count&#x27;),
+        renameFolderModal: root.querySelector(&#x27;#zk-rename-folder-modal&#x27;),
+        renameFolderName: root.querySelector(&#x27;#zk-rename-folder-name&#x27;),
+        renameFolderNameError: root.querySelector(&#x27;#zk-rename-folder-name-error&#x27;),
+        folderNameCount: root.querySelector(&#x27;#zk-folder-name-count&#x27;),
+        deleteFolderModal: root.querySelector(&#x27;#zk-delete-folder-modal&#x27;),
+        shareGraphModal: root.querySelector(&#x27;#zk-share-graph-modal&#x27;),
+        shareGraphName: root.querySelector(&#x27;#zk-share-graph-name&#x27;),
+        shareGraphLink: root.querySelector(&#x27;#zk-share-graph-link&#x27;),
+        deleteGraphModal: root.querySelector(&#x27;#zk-delete-graph-modal&#x27;),
+        deleteGraphName: root.querySelector(&#x27;#zk-delete-graph-name&#x27;),
+        moveGraphModal: root.querySelector(&#x27;#zk-move-graph-modal&#x27;),
+        moveGraphName: root.querySelector(&#x27;#zk-move-graph-name&#x27;),
+        moveParentPicker: root.querySelector(&#x27;#zk-move-parent-picker&#x27;),
+        moveParentSearch: root.querySelector(&#x27;#zk-move-parent-search&#x27;),
+        moveParentSearchClear: root.querySelector(&#x27;[data-demo-action=&quot;clear-move-parent-search&quot;]&#x27;),
+        moveParentTree: root.querySelector(&#x27;#zk-move-parent-tree&#x27;),
+        moveError: root.querySelector(&#x27;#zk-move-error&#x27;)
+      };
+
+      const state = {
+        expanded: { &#x27;test-case&#x27;: true, &#x27;wallet-case&#x27;: false, zj: false, hz: false, fraud: false },
+        searchExpanded: {},
+        searchActive: false,
+        searchTerm: &#x27;&#x27;,
+        advancedOpen: false,
+        conditions: [],
+        selectedGraph: &#x27;g-3&#x27;,
+        newCaseParentId: undefined,
+        parentSearchTerm: &#x27;&#x27;,
+        parentExpanded: { root: true, &#x27;wallet-case&#x27;: false, zj: false, hz: false, fraud: false },
+        contextGraphId: null,
+        renameGraphId: null,
+        deleteGraphId: null,
+        moveGraphId: null,
+        moveTargetId: null,
+        moveParentSearchTerm: &#x27;&#x27;,
+        moveParentExpanded: {},
+        shareLink: &#x27;&#x27;,
+        folderContextId: null,
+        renameFolderId: null,
+        deleteFolderId: null,
+        toastTimer: null
+      };
+
+      const labels = { name: &#x27;名称&#x27;, address: &#x27;地址&#x27;, tx: &#x27;交易哈希&#x27;, keyword: &#x27;关键词&#x27; };
+      const placeholders = { name: &#x27;匹配文件夹或图谱名称&#x27;, address: &#x27;输入地址&#x27;, tx: &#x27;输入交易哈希&#x27;, keyword: &#x27;匹配备注、便签等内容&#x27; };
+      const conditionTypes = [&#x27;name&#x27;, &#x27;address&#x27;, &#x27;tx&#x27;, &#x27;keyword&#x27;];
+
+      function escapeHtml(value) {
+        return String(value).replace(/[&amp;&lt;&gt;&#x27;&quot;]/g, char =&gt; ({ &#x27;&amp;&#x27;: &#x27;&amp;amp;&#x27;, &#x27;&lt;&#x27;: &#x27;&amp;lt;&#x27;, &#x27;&gt;&#x27;: &#x27;&amp;gt;&#x27;, &quot;&#x27;&quot;: &#x27;&amp;#39;&#x27;, &#x27;&quot;&#x27;: &#x27;&amp;quot;&#x27; }[char]));
+      }
+
+      function includesText(value, term) {
+        return String(value || &#x27;&#x27;).toLowerCase().includes(String(term || &#x27;&#x27;).trim().toLowerCase());
+      }
+
+      function allGraphText(graph, key) {
+        const values = (graph.fields &amp;&amp; graph.fields[key]) || [];
+        return Array.isArray(values) ? values : [values];
+      }
+
+      function graphKeywordText(graph) {
+        return [
+          ...allGraphText(graph, &#x27;keyword&#x27;),
+          ...allGraphText(graph, &#x27;remark&#x27;),
+          ...allGraphText(graph, &#x27;sticky&#x27;)
+        ];
+      }
+
+      function conditionMatchesGraph(condition, graph, path) {
+        const value = condition.value.trim();
+        if (!value) return true;
+        if (condition.type === &#x27;name&#x27;) return [graph.name, ...(path || []).map(folder =&gt; folder.name)].some(valueItem =&gt; includesText(valueItem, value));
+        if (condition.type === &#x27;address&#x27;) return allGraphText(graph, &#x27;address&#x27;).some(valueItem =&gt; includesText(valueItem, value));
+        if (condition.type === &#x27;tx&#x27;) return allGraphText(graph, &#x27;tx&#x27;).some(valueItem =&gt; includesText(valueItem, value));
+        if (condition.type === &#x27;keyword&#x27;) return graphKeywordText(graph).some(valueItem =&gt; includesText(valueItem, value));
+        return false;
+      }
+
+      function graphMatches(graph, conditions, path) {
+        return conditions.filter(item =&gt; item.value.trim()).every(condition =&gt; conditionMatchesGraph(condition, graph, path));
+      }
+
+      function folderMatchesDirect(folder, conditions, path) {
+        const nonEmpty = conditions.filter(item =&gt; item.value.trim());
+        return nonEmpty.length &gt; 0 &amp;&amp; nonEmpty.every(condition =&gt; condition.type === &#x27;name&#x27; &amp;&amp; includesText(folder.name, condition.value));
+      }
+
+      function makeGraphRow(graph, path, match) {
+        return { ...graph, path, match, children: [] };
+      }
+
+      function filterTree(nodes, conditions, parentPath = []) {
+        const output = [];
+        nodes.forEach(node =&gt; {
+          if (node.type === &#x27;graph&#x27;) {
+            if (graphMatches(node, conditions, parentPath)) output.push(makeGraphRow(node, parentPath, true));
+            return;
+          }
+          const directFolderHit = folderMatchesDirect(node, conditions, parentPath);
+          if (directFolderHit) {
+            output.push({ ...node, path: parentPath, match: true, children: node.children || [], directFolderHit: true });
+            return;
+          }
+          const nextPath = [...parentPath, node];
+          const childResults = filterTree(node.children || [], conditions, nextPath);
+          if (childResults.length || directFolderHit) {
+            output.push({ ...node, path: parentPath, match: directFolderHit, children: childResults, directFolderHit });
+            if (childResults.length) state.searchExpanded[node.id] = true;
+          }
+        });
+        return output;
+      }
+
+      function filterGeneral(nodes, term, parentPath = []) {
+        const output = [];
+        nodes.forEach(node =&gt; {
+          if (node.type === &#x27;graph&#x27;) {
+            const graphHit = [node.name, ...allGraphText(node, &#x27;address&#x27;), ...allGraphText(node, &#x27;tx&#x27;), ...graphKeywordText(node)].some(value =&gt; includesText(value, term));
+            if (graphHit) output.push(makeGraphRow(node, parentPath, true));
+            return;
+          }
+          const folderHit = includesText(node.name, term);
+          if (folderHit) {
+            output.push({ ...node, path: parentPath, match: true, children: [], directFolderHit: true });
+            return;
+          }
+          const nextPath = [...parentPath, node];
+          const childResults = filterGeneral(node.children || [], term, nextPath);
+          if (childResults.length || folderHit) {
+            output.push({ ...node, path: parentPath, match: folderHit, children: childResults, directFolderHit: folderHit });
+            if (childResults.length) state.searchExpanded[node.id] = true;
+          }
+        });
+        return output;
+      }
+
+      function renderTree(nodes, isSearch = false) {
+        if (!nodes.length) {
+          els.treeMount.innerHTML = &#x27;&lt;div class=&quot;zk-search-empty&quot;&gt;暂无相关内容&lt;/div&gt;&#x27;;
+          return;
+        }
+        let html = isSearch ? &#x27;&lt;div class=&quot;zk-tree-section-label&quot;&gt;搜索结果&lt;/div&gt;&#x27; : &#x27;&lt;div class=&quot;zk-pinned-empty&quot;&gt;暂无置顶数据&lt;/div&gt;&#x27;;
+        html += nodes.map(node =&gt; renderNode(node, 0, isSearch)).join(&#x27;&#x27;);
+        els.treeMount.innerHTML = html;
+      }
+
+      function renderNode(node, level, isSearch) {
+        const indent = level * 20;
+        if (node.type === &#x27;graph&#x27;) {
+          const selected = node.id === state.selectedGraph ? &#x27; is-selected&#x27; : &#x27;&#x27;;
+          const hit = isSearch &amp;&amp; node.match ? &#x27; is-search-hit&#x27; : &#x27;&#x27;;
+          return `&lt;div class=&quot;zk-tree-row${selected}${hit}&quot; data-tree-level=&quot;${level}&quot; data-tree-type=&quot;graph&quot; data-id=&quot;${node.id}&quot; style=&quot;--zk-tree-level:${level};--zk-tree-guide-left:${Math.max(0, level * 20 - 2)}px;padding-left:${indent + 8}px&quot; title=&quot;打开图谱&quot;&gt;&lt;button class=&quot;zk-tree-toggle&quot; type=&quot;button&quot; tabindex=&quot;-1&quot; aria-hidden=&quot;true&quot;&gt;&lt;/button&gt;&lt;span class=&quot;zk-tree-icon graph&quot; aria-hidden=&quot;true&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.8&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;&gt;&lt;path d=&quot;M7 12h4M13 7l3-2M13 17l3 2&quot;&gt;&lt;/path&gt;&lt;circle cx=&quot;5&quot; cy=&quot;12&quot; r=&quot;2.5&quot;&gt;&lt;/circle&gt;&lt;circle cx=&quot;18&quot; cy=&quot;5&quot; r=&quot;2.5&quot;&gt;&lt;/circle&gt;&lt;circle cx=&quot;18&quot; cy=&quot;19&quot; r=&quot;2.5&quot;&gt;&lt;/circle&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span class=&quot;zk-tree-name&quot;&gt;${escapeHtml(node.name)}&lt;/span&gt;&lt;/div&gt;`;
+        }
+        const hasChildren = (node.children || []).length &gt; 0;
+        const isOpen = hasChildren &amp;&amp; (isSearch ? Boolean(state.searchExpanded[node.id]) : Boolean(state.expanded[node.id]));
+        const childHtml = isOpen ? (node.children || []).map(child =&gt; renderNode(child, level + 1, isSearch)).join(&#x27;&#x27;) : &#x27;&#x27;;
+        const hit = isSearch &amp;&amp; node.match ? &#x27; is-search-hit&#x27; : &#x27;&#x27;;
+        const branch = isSearch &amp;&amp; hasChildren &amp;&amp; !node.match ? &#x27; is-search-branch&#x27; : &#x27;&#x27;;
+        const openFolder = !isSearch &amp;&amp; isOpen ? &#x27; is-folder-open&#x27; : &#x27;&#x27;;
+        const addGraph = !isSearch ? `&lt;button class=&quot;zk-folder-add-graph&quot; type=&quot;button&quot; data-demo-action=&quot;add-graph&quot; data-folder-id=&quot;${node.id}&quot; title=&quot;在此文件夹新增图谱&quot; aria-label=&quot;在${escapeHtml(node.name)}中新增图谱&quot;&gt;&lt;svg class=&quot;zk-folder-add-icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;8&quot;&gt;&lt;/circle&gt;&lt;path d=&quot;M12 8v8M8 12h8&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/button&gt;` : &#x27;&#x27;;
+        const toggle = hasChildren ? `&lt;button class=&quot;zk-tree-toggle&quot; type=&quot;button&quot; data-tree-action=&quot;toggle&quot; data-id=&quot;${node.id}&quot; aria-label=&quot;${isOpen ? &#x27;收起&#x27; : &#x27;展开&#x27;}&quot;&gt;${isOpen ? &#x27;⌃&#x27; : &#x27;⌄&#x27;}&lt;/button&gt;` : &#x27;&lt;span class=&quot;zk-tree-toggle is-empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&#x27;;
+        return `&lt;div class=&quot;zk-tree-row${hit}${branch}${openFolder}&quot; data-tree-level=&quot;${level}&quot; data-tree-type=&quot;folder&quot; data-id=&quot;${node.id}&quot; style=&quot;--zk-tree-level:${level};--zk-tree-guide-left:${Math.max(0, level * 20 - 2)}px;padding-left:${indent + 8}px&quot;&gt;&lt;span class=&quot;zk-tree-icon folder&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span class=&quot;zk-tree-name&quot;&gt;${escapeHtml(node.name)}&lt;/span&gt;${addGraph}${toggle}&lt;/div&gt;${childHtml}`;
+      }
+
+      function flattenFind(nodes, id) {
+        for (const node of nodes) {
+          if (node.id === id) return node;
+          if (node.children) {
+            const found = flattenFind(node.children, id);
+            if (found) return found;
+          }
+        }
+        return null;
+      }
+
+      function findPath(nodes, id, path = []) {
+        for (const node of nodes) {
+          if (node.id === id) return path;
+          if (node.children) {
+            const found = findPath(node.children, id, node.type === &#x27;folder&#x27; ? [...path, node] : path);
+            if (found) return found;
+          }
+        }
+        return null;
+      }
+
+      function graphNameExistsExcept(nodes, name, excludedId) {
+        return nodes.some(node =&gt; node.type === &#x27;graph&#x27;
+          ? node.id !== excludedId &amp;&amp; node.name.trim() === name
+          : graphNameExistsExcept(node.children || [], name, excludedId));
+      }
+
+      function closeGraphContextMenu() {
+        els.contextMenu.hidden = true;
+        state.contextGraphId = null;
+      }
+
+      function openGraphContextMenu(event, graphId) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeFolderContextMenu();
+        const bounds = els.sidebar.getBoundingClientRect();
+        const menuWidth = 156;
+        const menuHeight = 5 * 40 + 12;
+        const maxLeft = Math.max(8, els.sidebar.clientWidth - menuWidth - 8);
+        const maxTop = Math.max(8, els.sidebar.clientHeight - menuHeight - 8);
+        state.contextGraphId = graphId;
+        els.contextMenu.style.left = `${Math.max(8, Math.min(event.clientX - bounds.left, maxLeft))}px`;
+        els.contextMenu.style.top = `${Math.max(8, Math.min(event.clientY - bounds.top, maxTop))}px`;
+        els.contextMenu.hidden = false;
+      }
+
+      function getRenameGraphError() {
+        const name = els.renameGraphName.value.trim();
+        if (!name) return &#x27;请输入图谱名称&#x27;;
+        if (graphNameExistsExcept(folders, name, state.renameGraphId)) return &#x27;图谱名称已存在&#x27;;
+        return &#x27;&#x27;;
+      }
+
+      function updateRenameGraphValidation() {
+        const message = getRenameGraphError();
+        const invalid = Boolean(message);
+        els.graphNameCount.textContent = `${els.renameGraphName.value.length}/20`;
+        els.renameGraphName.classList.toggle(&#x27;is-invalid&#x27;, invalid);
+        if (invalid) els.renameGraphName.setAttribute(&#x27;aria-invalid&#x27;, &#x27;true&#x27;);
+        else els.renameGraphName.removeAttribute(&#x27;aria-invalid&#x27;);
+        els.renameGraphNameError.textContent = message || &#x27;请输入图谱名称&#x27;;
+        els.renameGraphNameError.hidden = !invalid;
+        return !invalid;
+      }
+
+      function openRenameGraph(graph) {
+        state.renameGraphId = graph.id;
+        els.renameGraphName.value = graph.name;
+        els.graphNameCount.textContent = `${graph.name.length}/20`;
+        els.renameGraphName.classList.remove(&#x27;is-invalid&#x27;);
+        els.renameGraphName.removeAttribute(&#x27;aria-invalid&#x27;);
+        els.renameGraphNameError.hidden = true;
+        els.renameGraphModal.hidden = false;
+        els.renameGraphName.focus();
+        els.renameGraphName.select();
+      }
+
+      function closeRenameGraph() {
+        els.renameGraphModal.hidden = true;
+        state.renameGraphId = null;
+      }
+
+      function submitRenameGraph() {
+        if (!updateRenameGraphValidation()) {
+          els.renameGraphName.focus();
+          return;
+        }
+        const graph = flattenFind(folders, state.renameGraphId);
+        if (!graph || graph.type !== &#x27;graph&#x27;) return;
+        graph.name = els.renameGraphName.value.trim();
+        closeRenameGraph();
+        renderCurrentTree();
+        showSuccessToast(&#x27;图谱重命名成功&#x27;);
+      }
+
+      function collectFolders(nodes, result = []) {
+        nodes.forEach(node =&gt; {
+          if (node.type !== &#x27;folder&#x27;) return;
+          result.push(node);
+          collectFolders(node.children || [], result);
+        });
+        return result;
+      }
+
+      function removeNodeById(nodes, id) {
+        for (let index = 0; index &lt; nodes.length; index += 1) {
+          if (nodes[index].id === id) return nodes.splice(index, 1)[0];
+          if (nodes[index].children) {
+            const removed = removeNodeById(nodes[index].children, id);
+            if (removed) return removed;
+          }
+        }
+        return null;
+      }
+
+      function findFirstGraph(nodes) {
+        for (const node of nodes) {
+          if (node.type === &#x27;graph&#x27;) return node;
+          const graph = findFirstGraph(node.children || []);
+          if (graph) return graph;
+        }
+        return null;
+      }
+
+      function refreshSelectedGraph() {
+        const graph = flattenFind(folders, state.selectedGraph);
+        if (!graph) return;
+        const path = findPath(folders, graph.id).map(node =&gt; node.name);
+        els.canvasTitle.textContent = graph.name;
+        els.canvasPath.textContent = path.join(&#x27; / &#x27;);
+        renderCanvasSearchHighlights(graph);
+      }
+
+      function openShareGraph(graph) {
+        state.shareLink = `http://dev.bitjungle.cn/chart?graphId=${encodeURIComponent(graph.id)}&amp;accessCode=demo-${encodeURIComponent(graph.id)}`;
+        els.shareGraphName.textContent = graph.name;
+        els.shareGraphLink.textContent = state.shareLink;
+        els.shareGraphModal.hidden = false;
+      }
+
+      function closeShareGraph() {
+        els.shareGraphModal.hidden = true;
+        state.shareLink = &#x27;&#x27;;
+      }
+
+      function copyShareLink() {
+        if (navigator.clipboard &amp;&amp; state.shareLink) navigator.clipboard.writeText(state.shareLink).catch(() =&gt; {});
+        showSuccessToast(&#x27;链接已复制&#x27;);
+      }
+
+      function openDeleteGraph(graph) {
+        state.deleteGraphId = graph.id;
+        els.deleteGraphName.textContent = graph.name;
+        els.deleteGraphModal.hidden = false;
+      }
+
+      function closeDeleteGraph() {
+        els.deleteGraphModal.hidden = true;
+        state.deleteGraphId = null;
+      }
+
+      function submitDeleteGraph() {
+        const graph = flattenFind(folders, state.deleteGraphId);
+        if (!graph || graph.type !== &#x27;graph&#x27;) return;
+        const removed = removeNodeById(folders, graph.id);
+        closeDeleteGraph();
+        if (removed &amp;&amp; state.selectedGraph === graph.id) {
+          const fallback = findFirstGraph(folders);
+          state.selectedGraph = fallback ? fallback.id : null;
+          if (fallback) refreshSelectedGraph();
+        }
+        renderCurrentTree();
+        showSuccessToast(&#x27;图谱删除成功&#x27;);
+      }
+
+      function renderMoveParentOptions(nodes, level = 0) {
+        return nodes.map(node =&gt; {
+          if (node.type !== &#x27;folder&#x27;) return &#x27;&#x27;;
+          const selected = state.moveTargetId === node.id ? &#x27; is-selected&#x27; : &#x27;&#x27;;
+          const match = state.moveParentSearchTerm &amp;&amp; node.parentSearchMatch ? &#x27; is-match&#x27; : &#x27;&#x27;;
+          const childFolders = (node.children || []).filter(child =&gt; child.type === &#x27;folder&#x27;);
+          const isExpanded = state.moveParentSearchTerm ? childFolders.length &gt; 0 : Boolean(state.moveParentExpanded[node.id]);
+          const toggle = childFolders.length ? `&lt;button class=&quot;zk-parent-toggle ${isExpanded ? &#x27;is-open&#x27; : &#x27;is-closed&#x27;}&quot; type=&quot;button&quot; data-demo-action=&quot;toggle-move-parent&quot; data-parent-id=&quot;${node.id}&quot; aria-label=&quot;${isExpanded ? &#x27;收起&#x27; : &#x27;展开&#x27;}&quot;&gt;&lt;/button&gt;` : &#x27;&lt;span class=&quot;zk-parent-toggle is-empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&#x27;;
+          const children = isExpanded ? renderMoveParentOptions(childFolders, level + 1) : &#x27;&#x27;;
+          return `&lt;div class=&quot;zk-parent-node&quot;&gt;&lt;div class=&quot;zk-parent-row&quot; style=&quot;padding-left:${level * 18}px&quot;&gt;${toggle}&lt;button class=&quot;zk-parent-option${selected}${match}&quot; type=&quot;button&quot; data-demo-action=&quot;select-move-parent&quot; data-parent-id=&quot;${node.id}&quot;&gt;&lt;span class=&quot;zk-parent-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span class=&quot;zk-parent-folder&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span&gt;${escapeHtml(node.name)}&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;${children}&lt;/div&gt;`;
+        }).join(&#x27;&#x27;);
+      }
+
+      function renderMoveParentTree() {
+        const rootFolders = folders.filter(node =&gt; node.type === &#x27;folder&#x27;);
+        const searchTerm = state.moveParentSearchTerm.trim();
+        const visibleFolders = searchTerm ? filterParentFolders(rootFolders, searchTerm) : rootFolders;
+        els.moveParentSearchClear.hidden = !searchTerm;
+        els.moveParentTree.innerHTML = visibleFolders.length
+          ? renderMoveParentOptions(visibleFolders)
+          : &#x27;&lt;div class=&quot;zk-parent-empty&quot;&gt;未找到匹配的目录&lt;/div&gt;&#x27;;
+      }
+
+      function openMoveGraph(graph) {
+        state.moveGraphId = graph.id;
+        state.moveParentSearchTerm = &#x27;&#x27;;
+        state.moveParentExpanded = {};
+        collectFolders(folders).forEach(folder =&gt; { state.moveParentExpanded[folder.id] = true; });
+        const path = findPath(folders, graph.id) || [];
+        const currentParent = path[path.length - 1];
+        state.moveTargetId = currentParent ? currentParent.id : null;
+        els.moveGraphName.textContent = graph.name;
+        els.moveParentSearch.value = &#x27;&#x27;;
+        els.moveParentPicker.classList.remove(&#x27;is-invalid&#x27;);
+        els.moveError.hidden = true;
+        renderMoveParentTree();
+        els.moveGraphModal.hidden = false;
+      }
+
+      function closeMoveGraph() {
+        els.moveGraphModal.hidden = true;
+        state.moveGraphId = null;
+        state.moveTargetId = null;
+        state.moveParentSearchTerm = &#x27;&#x27;;
+        els.moveError.hidden = true;
+        els.moveParentPicker.classList.remove(&#x27;is-invalid&#x27;);
+      }
+
+      function submitMoveGraph() {
+        const graph = flattenFind(folders, state.moveGraphId);
+        const targetId = state.moveTargetId;
+        const target = flattenFind(folders, targetId);
+        if (!graph || graph.type !== &#x27;graph&#x27; || !target || target.type !== &#x27;folder&#x27;) {
+          els.moveParentPicker.classList.add(&#x27;is-invalid&#x27;);
+          els.moveError.hidden = false;
+          return;
+        }
+        const moved = removeNodeById(folders, graph.id);
+        if (!moved) return;
+        target.children = target.children || [];
+        target.children.push(moved);
+        findPath(folders, target.id).forEach(folder =&gt; { state.expanded[folder.id] = true; });
+        state.expanded[target.id] = true;
+        closeMoveGraph();
+        renderCurrentTree();
+        refreshSelectedGraph();
+        showSuccessToast(&#x27;图谱移动成功&#x27;);
+      }
+
+      function handleGraphMenuAction(action) {
+        const graph = flattenFind(folders, state.contextGraphId);
+        closeGraphContextMenu();
+        if (!graph || graph.type !== &#x27;graph&#x27;) return;
+        if (action === &#x27;rename&#x27;) {
+          openRenameGraph(graph);
+          return;
+        }
+        if (action === &#x27;share&#x27;) {
+          openShareGraph(graph);
+          return;
+        }
+        if (action === &#x27;delete&#x27;) {
+          openDeleteGraph(graph);
+          return;
+        }
+        if (action === &#x27;move&#x27;) {
+          openMoveGraph(graph);
+          return;
+        }
+        if (action === &#x27;pin&#x27;) showToast(&#x27;置顶图谱入口&#x27;);
+      }
+
+      function closeFolderContextMenu() {
+        els.folderContextMenu.hidden = true;
+        state.folderContextId = null;
+      }
+
+      function openFolderContextMenu(event, folderId) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeGraphContextMenu();
+        const bounds = els.sidebar.getBoundingClientRect();
+        const menuWidth = 156;
+        const menuHeight = 2 * 40 + 12;
+        const maxLeft = Math.max(8, els.sidebar.clientWidth - menuWidth - 8);
+        const maxTop = Math.max(8, els.sidebar.clientHeight - menuHeight - 8);
+        state.folderContextId = folderId;
+        els.folderContextMenu.style.left = `${Math.max(8, Math.min(event.clientX - bounds.left, maxLeft))}px`;
+        els.folderContextMenu.style.top = `${Math.max(8, Math.min(event.clientY - bounds.top, maxTop))}px`;
+        els.folderContextMenu.hidden = false;
+      }
+
+      function getFolderRenameError() {
+        const name = els.renameFolderName.value.trim();
+        if (!name) return &#x27;请输入案件名称&#x27;;
+        const path = findPath(folders, state.renameFolderId) || [];
+        const parentId = path.length ? path[path.length - 1].id : null;
+        if (getSiblingFolders(parentId).some(folder =&gt; folder.id !== state.renameFolderId &amp;&amp; folder.name.trim() === name)) return &#x27;案件名称已存在&#x27;;
+        if (graphNameExists(folders, name)) return &#x27;名称已被图谱使用&#x27;;
+        return &#x27;&#x27;;
+      }
+
+      function updateFolderRenameValidation() {
+        const message = getFolderRenameError();
+        const invalid = Boolean(message);
+        els.folderNameCount.textContent = `${els.renameFolderName.value.length}/20`;
+        els.renameFolderName.classList.toggle(&#x27;is-invalid&#x27;, invalid);
+        if (invalid) els.renameFolderName.setAttribute(&#x27;aria-invalid&#x27;, &#x27;true&#x27;);
+        else els.renameFolderName.removeAttribute(&#x27;aria-invalid&#x27;);
+        els.renameFolderNameError.textContent = message || &#x27;请输入案件名称&#x27;;
+        els.renameFolderNameError.hidden = !invalid;
+        return !invalid;
+      }
+
+      function openRenameFolder(folder) {
+        state.renameFolderId = folder.id;
+        els.renameFolderName.value = folder.name;
+        els.folderNameCount.textContent = `${folder.name.length}/20`;
+        els.renameFolderName.classList.remove(&#x27;is-invalid&#x27;);
+        els.renameFolderName.removeAttribute(&#x27;aria-invalid&#x27;);
+        els.renameFolderNameError.hidden = true;
+        els.renameFolderModal.hidden = false;
+        els.renameFolderName.focus();
+        els.renameFolderName.select();
+      }
+
+      function closeRenameFolder() {
+        els.renameFolderModal.hidden = true;
+        state.renameFolderId = null;
+      }
+
+      function submitRenameFolder() {
+        if (!updateFolderRenameValidation()) {
+          els.renameFolderName.focus();
+          return;
+        }
+        const folder = flattenFind(folders, state.renameFolderId);
+        if (!folder || folder.type !== &#x27;folder&#x27;) return;
+        folder.name = els.renameFolderName.value.trim();
+        closeRenameFolder();
+        renderCurrentTree();
+        refreshSelectedGraph();
+        showSuccessToast(&#x27;案件重命名成功&#x27;);
+      }
+
+      function openDeleteFolder(folder) {
+        state.deleteFolderId = folder.id;
+        els.deleteFolderModal.hidden = false;
+      }
+
+      function closeDeleteFolder() {
+        els.deleteFolderModal.hidden = true;
+        state.deleteFolderId = null;
+      }
+
+      function submitDeleteFolder() {
+        const folder = flattenFind(folders, state.deleteFolderId);
+        if (!folder || folder.type !== &#x27;folder&#x27;) return;
+        const deletedSelectedGraph = Boolean(state.selectedGraph &amp;&amp; flattenFind([folder], state.selectedGraph));
+        const removed = removeNodeById(folders, folder.id);
+        closeDeleteFolder();
+        if (removed &amp;&amp; deletedSelectedGraph) {
+          const fallback = findFirstGraph(folders);
+          state.selectedGraph = fallback ? fallback.id : null;
+          if (fallback) refreshSelectedGraph();
+        }
+        renderCurrentTree();
+        showSuccessToast(&#x27;案件删除成功&#x27;);
+      }
+
+      function handleFolderMenuAction(action) {
+        const folder = flattenFind(folders, state.folderContextId);
+        closeFolderContextMenu();
+        if (!folder || folder.type !== &#x27;folder&#x27;) return;
+        if (action === &#x27;rename&#x27;) {
+          openRenameFolder(folder);
+          return;
+        }
+        if (action === &#x27;delete&#x27;) openDeleteFolder(folder);
+      }
+
+      function renderCanvasSearchHighlights(graph) {
+        const svg = els.graphSvg;
+        if (!svg) return;
+        svg.classList.toggle(&#x27;is-history&#x27;, Boolean(graph &amp;&amp; graph.id === &#x27;g-old&#x27;));
+        svg.querySelectorAll(&#x27;.is-search-hit&#x27;).forEach(node =&gt; node.classList.remove(&#x27;is-search-hit&#x27;));
+        if (!graph || graph.id !== &#x27;g-old&#x27; || !state.searchActive) return;
+
+        const term = state.searchTerm.trim();
+        const matches = value =&gt; Boolean(term) &amp;&amp; includesText(value, term);
+
+        svg.querySelectorAll(&#x27;[data-history-address]&#x27;).forEach(node =&gt; {
+          const nodeAddress = node.getAttribute(&#x27;data-history-address&#x27;) || &#x27;&#x27;;
+          const nodeKeyword = node.getAttribute(&#x27;data-history-keyword&#x27;) || &#x27;&#x27;;
+          const nodeHit = matches(nodeAddress) || matches(nodeKeyword);
+          node.querySelector(&#x27;.zk-history-node, .zk-history-target&#x27;)?.classList.toggle(&#x27;is-search-hit&#x27;, nodeHit);
+        });
+        svg.querySelectorAll(&#x27;[data-history-tx]&#x27;).forEach(edge =&gt; {
+          edge.classList.toggle(&#x27;is-search-hit&#x27;, matches(edge.getAttribute(&#x27;data-history-tx&#x27;) || &#x27;&#x27;));
+        });
+        svg.querySelectorAll(&#x27;[data-history-keyword]&#x27;).forEach(note =&gt; {
+          note.classList.toggle(&#x27;is-search-hit&#x27;, matches(note.getAttribute(&#x27;data-history-keyword&#x27;) || &#x27;&#x27;));
+        });
+      }
+
+      function openGraph(id) {
+        const graph = flattenFind(folders, id);
+        if (!graph || graph.type !== &#x27;graph&#x27;) return;
+        state.selectedGraph = id;
+        const path = findPath(folders, id).map(node =&gt; node.name);
+        els.canvasTitle.textContent = graph.name;
+        els.canvasPath.textContent = path.join(&#x27; / &#x27;);
+        renderCanvasSearchHighlights(graph);
+        renderCurrentTree();
+        showToast(`已打开：${graph.name}`);
+      }
+
+      function renderCurrentTree() {
+        if (!state.searchActive) {
+          renderTree(folders, false);
+          renderCanvasSearchHighlights(flattenFind(folders, state.selectedGraph));
+          return;
+        }
+        const results = filterGeneral(folders, state.searchTerm);
+        renderTree(results, true);
+        renderCanvasSearchHighlights(flattenFind(folders, state.selectedGraph));
+      }
+
+      function filterParentFolders(nodes, term) {
+        return nodes.map(node =&gt; {
+          const childFolders = (node.children || []).filter(child =&gt; child.type === &#x27;folder&#x27;);
+          const matchedChildren = filterParentFolders(childFolders, term);
+          const selfMatch = includesText(node.name, term);
+          if (!selfMatch &amp;&amp; !matchedChildren.length) return null;
+          return { ...node, children: matchedChildren, parentSearchMatch: selfMatch };
+        }).filter(Boolean);
+      }
+
+      function renderParentOptions(nodes, level = 0) {
+        return nodes.map(node =&gt; {
+          if (node.type !== &#x27;folder&#x27;) return &#x27;&#x27;;
+          const selected = (state.newCaseParentId || &#x27;&#x27;) === node.id ? &#x27; is-selected&#x27; : &#x27;&#x27;;
+          const match = state.parentSearchTerm &amp;&amp; node.parentSearchMatch ? &#x27; is-match&#x27; : &#x27;&#x27;;
+          const childFolders = (node.children || []).filter(child =&gt; child.type === &#x27;folder&#x27;);
+          const isExpanded = state.parentSearchTerm ? childFolders.length &gt; 0 : Boolean(state.parentExpanded[node.id]);
+          const toggle = childFolders.length ? `&lt;button class=&quot;zk-parent-toggle ${isExpanded ? &#x27;is-open&#x27; : &#x27;is-closed&#x27;}&quot; type=&quot;button&quot; data-demo-action=&quot;toggle-parent&quot; data-parent-id=&quot;${node.id}&quot; aria-label=&quot;${isExpanded ? &#x27;收起&#x27; : &#x27;展开&#x27;}&quot;&gt;&lt;/button&gt;` : &#x27;&lt;span class=&quot;zk-parent-toggle is-empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&#x27;;
+          const children = isExpanded ? renderParentOptions(childFolders, level + 1) : &#x27;&#x27;;
+          return `&lt;div class=&quot;zk-parent-node&quot;&gt;&lt;div class=&quot;zk-parent-row&quot; style=&quot;padding-left:${level * 18}px&quot;&gt;${toggle}&lt;button class=&quot;zk-parent-option${selected}${match}&quot; type=&quot;button&quot; data-demo-action=&quot;select-parent&quot; data-parent-id=&quot;${node.id}&quot;&gt;&lt;span class=&quot;zk-parent-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span class=&quot;zk-parent-folder&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span&gt;${escapeHtml(node.name)}&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;${children}&lt;/div&gt;`;
+        }).join(&#x27;&#x27;);
+      }
+
+      function renderParentTree() {
+        const rootSelected = state.newCaseParentId === null ? &#x27; is-selected&#x27; : &#x27;&#x27;;
+        const rootFolders = folders.filter(node =&gt; node.type === &#x27;folder&#x27;);
+        const searchTerm = state.parentSearchTerm.trim();
+        const visibleFolders = searchTerm ? filterParentFolders(rootFolders, searchTerm) : rootFolders;
+        const rootExpanded = searchTerm ? true : state.parentExpanded.root !== false;
+        const rootToggle = searchTerm ? &#x27;&lt;span class=&quot;zk-parent-toggle is-empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&#x27; : (rootFolders.length ? `&lt;button class=&quot;zk-parent-toggle ${rootExpanded ? &#x27;is-open&#x27; : &#x27;is-closed&#x27;}&quot; type=&quot;button&quot; data-demo-action=&quot;toggle-parent&quot; data-parent-id=&quot;root&quot; aria-label=&quot;${rootExpanded ? &#x27;收起根目录&#x27; : &#x27;展开根目录&#x27;}&quot;&gt;&lt;/button&gt;` : &#x27;&lt;span class=&quot;zk-parent-toggle is-empty&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&#x27;);
+        const children = rootExpanded ? renderParentOptions(visibleFolders, 1) : &#x27;&#x27;;
+        const empty = searchTerm &amp;&amp; !visibleFolders.length ? &#x27;&lt;div class=&quot;zk-parent-empty&quot;&gt;未找到匹配的目录&lt;/div&gt;&#x27; : &#x27;&#x27;;
+        els.parentSearchClear.hidden = !searchTerm;
+        els.parentTree.innerHTML = `&lt;div class=&quot;zk-parent-node&quot;&gt;&lt;div class=&quot;zk-parent-row&quot;&gt;${rootToggle}&lt;button class=&quot;zk-parent-option${rootSelected}&quot; type=&quot;button&quot; data-demo-action=&quot;select-parent&quot; data-parent-id=&quot;&quot;&gt;&lt;span class=&quot;zk-parent-check&quot; aria-hidden=&quot;true&quot;&gt;&lt;/span&gt;&lt;span class=&quot;zk-parent-root-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;svg viewBox=&quot;0 0 24 24&quot;&gt;&lt;path d=&quot;m3 10 9-7 9 7v11H3z&quot;&gt;&lt;/path&gt;&lt;path d=&quot;M9 21v-7h6v7&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/span&gt;&lt;span&gt;根目录&lt;/span&gt;&lt;/button&gt;&lt;/div&gt;${children}${empty}&lt;/div&gt;`;
+      }
+
+      function clearNewCaseValidation() {
+        els.newCaseName.classList.remove(&#x27;is-invalid&#x27;);
+        els.newCaseName.removeAttribute(&#x27;aria-invalid&#x27;);
+        els.newCaseNameError.hidden = true;
+        els.newCaseNameError.textContent = &#x27;请输入案件名称&#x27;;
+        els.parentPicker.classList.remove(&#x27;is-invalid&#x27;);
+        els.parentError.hidden = true;
+        els.parentError.textContent = &#x27;请选择所属目录&#x27;;
+      }
+
+      function getSiblingFolders(parentId) {
+        if (parentId === null) return folders.filter(node =&gt; node.type === &#x27;folder&#x27;);
+        const parent = flattenFind(folders, parentId);
+        return (parent?.children || []).filter(node =&gt; node.type === &#x27;folder&#x27;);
+      }
+
+      function graphNameExists(nodes, name) {
+        return nodes.some(node =&gt; node.type === &#x27;graph&#x27;
+          ? node.name.trim() === name
+          : graphNameExists(node.children || [], name));
+      }
+
+      function getNewCaseNameError() {
+        const name = els.newCaseName.value.trim();
+        if (!name) return &#x27;请输入案件名称&#x27;;
+        if (typeof state.newCaseParentId === &#x27;undefined&#x27;) return &#x27;&#x27;;
+        if (getSiblingFolders(state.newCaseParentId).some(folder =&gt; folder.name.trim() === name)) {
+          return &#x27;案件名称已存在&#x27;;
+        }
+        if (graphNameExists(folders, name)) return &#x27;名称已被图谱使用&#x27;;
+        return &#x27;&#x27;;
+      }
+
+      function updateNewCaseNameValidation() {
+        const message = getNewCaseNameError();
+        const invalid = Boolean(message);
+        els.newCaseName.classList.toggle(&#x27;is-invalid&#x27;, invalid);
+        if (invalid) els.newCaseName.setAttribute(&#x27;aria-invalid&#x27;, &#x27;true&#x27;);
+        else els.newCaseName.removeAttribute(&#x27;aria-invalid&#x27;);
+        els.newCaseNameError.textContent = message || &#x27;请输入案件名称&#x27;;
+        els.newCaseNameError.hidden = !invalid;
+        return !invalid;
+      }
+
+      function setParentError(message) {
+        els.parentPicker.classList.add(&#x27;is-invalid&#x27;);
+        els.parentError.textContent = message;
+        els.parentError.hidden = false;
+      }
+
+      function validateNewCase() {
+        const nameValid = updateNewCaseNameValidation();
+        const parentInvalid = typeof state.newCaseParentId === &#x27;undefined&#x27;;
+        els.parentPicker.classList.toggle(&#x27;is-invalid&#x27;, parentInvalid);
+        els.parentError.textContent = &#x27;请选择所属目录&#x27;;
+        els.parentError.hidden = !parentInvalid;
+        if (!nameValid) els.newCaseName.focus();
+        return nameValid &amp;&amp; !parentInvalid;
+      }
+
+      function openNewCaseModal() {
+        state.newCaseParentId = undefined;
+        state.parentSearchTerm = &#x27;&#x27;;
+        els.newCaseName.value = &#x27;&#x27;;
+        els.parentSearch.value = &#x27;&#x27;;
+        clearNewCaseValidation();
+        renderParentTree();
+        els.newCaseModal.hidden = false;
+        els.newCaseName.focus();
+      }
+
+      function closeNewCaseModal() {
+        els.newCaseModal.hidden = true;
+      }
+
+      function folderDepth(nodes, id, depth = 1) {
+        for (const node of nodes) {
+          if (node.type !== &#x27;folder&#x27;) continue;
+          if (node.id === id) return depth;
+          const nestedDepth = folderDepth(node.children || [], id, depth + 1);
+          if (nestedDepth) return nestedDepth;
+        }
+        return 0;
+      }
+
+      function submitNewCase() {
+        const name = els.newCaseName.value.trim();
+        if (!validateNewCase()) return;
+        const parentDepth = state.newCaseParentId === null ? 0 : folderDepth(folders, state.newCaseParentId);
+        if (parentDepth &gt;= 4) {
+          setParentError(&#x27;已达目录层级上限&#x27;);
+          return;
+        }
+        const newFolder = { type: &#x27;folder&#x27;, id: `folder-${Date.now()}`, name, children: [] };
+        if (state.newCaseParentId) {
+          const parent = flattenFind(folders, state.newCaseParentId);
+          if (!parent || parent.type !== &#x27;folder&#x27;) return;
+          parent.children = parent.children || [];
+          parent.children.push(newFolder);
+          findPath(folders, state.newCaseParentId).forEach(folder =&gt; { state.expanded[folder.id] = true; });
+          state.expanded[parent.id] = true;
+        } else {
+          folders.push(newFolder);
+        }
+        closeNewCaseModal();
+        if (state.searchActive) closeSearch();
+        renderCurrentTree();
+        showSuccessToast(&#x27;案件添加成功&#x27;);
+      }
+
+      function showToast(message) {
+        els.toast.textContent = message;
+        els.toast.classList.remove(&#x27;success&#x27;);
+        els.toast.classList.add(&#x27;show&#x27;);
+        clearTimeout(state.toastTimer);
+        state.toastTimer = setTimeout(() =&gt; els.toast.classList.remove(&#x27;show&#x27;), 1500);
+      }
+
+      function showSuccessToast(message) {
+        els.toast.innerHTML = `&lt;span class=&quot;zk-toast-check&quot; aria-hidden=&quot;true&quot;&gt;✓&lt;/span&gt;&lt;span&gt;${escapeHtml(message)}&lt;/span&gt;`;
+        els.toast.classList.add(&#x27;show&#x27;, &#x27;success&#x27;);
+        clearTimeout(state.toastTimer);
+        state.toastTimer = setTimeout(() =&gt; {
+          els.toast.classList.remove(&#x27;show&#x27;, &#x27;success&#x27;);
+          els.toast.textContent = &#x27;&#x27;;
+        }, 1800);
+      }
+
+      function clearSearchState() {
+        state.searchActive = false;
+        state.searchTerm = &#x27;&#x27;;
+        state.searchExpanded = {};
+      }
+
+      function updateSearchControls() {
+        const isOpen = !els.searchView.hidden;
+        els.searchToggle.setAttribute(&#x27;aria-expanded&#x27;, String(isOpen));
+        els.searchClear.hidden = !els.searchInput.value;
+      }
+
+      function closeSearch() {
+        clearSearchState();
+        els.searchInput.value = &#x27;&#x27;;
+        els.searchView.hidden = true;
+        els.treeScroll.hidden = false;
+        updateSearchControls();
+        renderCurrentTree();
+      }
+
+      function openSearch() {
+        els.searchView.hidden = false;
+        els.treeScroll.hidden = false;
+        updateSearchControls();
+        els.searchInput.focus();
+      }
+
+      function toggleSearch() {
+        if (!els.searchView.hidden) {
+          closeSearch();
+          return;
+        }
+        openSearch();
+      }
+
+      function runSearch() {
+        const term = els.searchInput.value.trim();
+        if (!term) {
+          showToast(&#x27;请输入搜索内容&#x27;);
+          els.searchInput.focus();
+          return;
+        }
+        state.searchTerm = term;
+        state.searchActive = true;
+        state.searchExpanded = {};
+        renderCurrentTree();
+      }
+
+      function clearSearchInput() {
+        els.searchInput.value = &#x27;&#x27;;
+        state.searchTerm = &#x27;&#x27;;
+        state.searchActive = false;
+        state.searchExpanded = {};
+        updateSearchControls();
+        renderCurrentTree();
+        els.searchInput.focus();
+      }
+
+      function handleSearchKeydown(event) {
+        if (event.key === &#x27;Enter&#x27;) {
+          event.preventDefault();
+          runSearch();
+        }
+      }
+
+      root.addEventListener(&#x27;contextmenu&#x27;, event =&gt; {
+        const row = event.target.closest(&#x27;[data-tree-type=&quot;graph&quot;]&#x27;);
+        if (row) {
+          openGraphContextMenu(event, row.dataset.id);
+          return;
+        }
+        const folderRow = event.target.closest(&#x27;[data-tree-type=&quot;folder&quot;]&#x27;);
+        if (folderRow) {
+          openFolderContextMenu(event, folderRow.dataset.id);
+          return;
+        }
+        closeGraphContextMenu();
+        closeFolderContextMenu();
+      });
+
+      root.addEventListener(&#x27;click&#x27;, event =&gt; {
+        const actionNode = event.target.closest(&#x27;[data-demo-action]&#x27;);
+        if (actionNode) {
+          const action = actionNode.dataset.demoAction;
+          if (action === &#x27;graph-menu&#x27;) {
+            handleGraphMenuAction(actionNode.dataset.graphMenuAction);
+            return;
+          }
+          if (action === &#x27;folder-menu&#x27;) {
+            handleFolderMenuAction(actionNode.dataset.folderMenuAction);
+            return;
+          }
+          closeGraphContextMenu();
+          closeFolderContextMenu();
+          if (action === &#x27;toggle-search&#x27;) toggleSearch();
+          if (action === &#x27;run-search&#x27;) runSearch();
+          if (action === &#x27;clear-search&#x27;) clearSearchInput();
+          if (action === &#x27;close-new-case&#x27;) closeNewCaseModal();
+          if (action === &#x27;submit-new-case&#x27;) submitNewCase();
+          if (action === &#x27;close-rename-graph&#x27;) closeRenameGraph();
+          if (action === &#x27;submit-rename-graph&#x27;) submitRenameGraph();
+          if (action === &#x27;close-rename-folder&#x27;) closeRenameFolder();
+          if (action === &#x27;submit-rename-folder&#x27;) submitRenameFolder();
+          if (action === &#x27;close-delete-folder&#x27;) closeDeleteFolder();
+          if (action === &#x27;submit-delete-folder&#x27;) submitDeleteFolder();
+          if (action === &#x27;close-share-graph&#x27;) closeShareGraph();
+          if (action === &#x27;copy-share-link&#x27;) copyShareLink();
+          if (action === &#x27;close-delete-graph&#x27;) closeDeleteGraph();
+          if (action === &#x27;submit-delete-graph&#x27;) submitDeleteGraph();
+          if (action === &#x27;close-move-graph&#x27;) closeMoveGraph();
+          if (action === &#x27;submit-move-graph&#x27;) submitMoveGraph();
+          if (action === &#x27;clear-move-parent-search&#x27;) {
+            state.moveParentSearchTerm = &#x27;&#x27;;
+            els.moveParentSearch.value = &#x27;&#x27;;
+            renderMoveParentTree();
+            els.moveParentSearch.focus();
+          }
+          if (action === &#x27;select-move-parent&#x27;) {
+            state.moveTargetId = actionNode.dataset.parentId;
+            els.moveParentPicker.classList.remove(&#x27;is-invalid&#x27;);
+            els.moveError.hidden = true;
+            renderMoveParentTree();
+          }
+          if (action === &#x27;toggle-move-parent&#x27;) {
+            const parentId = actionNode.dataset.parentId;
+            state.moveParentExpanded[parentId] = !state.moveParentExpanded[parentId];
+            renderMoveParentTree();
+          }
+          if (action === &#x27;clear-parent-search&#x27;) {
+            state.parentSearchTerm = &#x27;&#x27;;
+            els.parentSearch.value = &#x27;&#x27;;
+            renderParentTree();
+            els.parentSearch.focus();
+          }
+          if (action === &#x27;select-parent&#x27;) {
+            state.newCaseParentId = actionNode.dataset.parentId || null;
+            els.parentPicker.classList.remove(&#x27;is-invalid&#x27;);
+            els.parentError.hidden = true;
+            els.parentError.textContent = &#x27;请选择所属目录&#x27;;
+            updateNewCaseNameValidation();
+            renderParentTree();
+          }
+          if (action === &#x27;toggle-parent&#x27;) {
+            const parentId = actionNode.dataset.parentId;
+            state.parentExpanded[parentId] = !state.parentExpanded[parentId];
+            renderParentTree();
+          }
+          if (action === &#x27;create&#x27;) showToast(&#x27;创建图谱入口&#x27;);
+          if (action === &#x27;add-folder&#x27;) openNewCaseModal();
+          if (action === &#x27;add-graph&#x27;) showToast(&#x27;新增图谱入口&#x27;);
+          return;
+        }
+
+        closeGraphContextMenu();
+        closeFolderContextMenu();
+
+        const toggle = event.target.closest(&#x27;[data-tree-action=&quot;toggle&quot;]&#x27;);
+        if (toggle) {
+          const id = toggle.dataset.id;
+          const target = state.searchActive ? state.searchExpanded : state.expanded;
+          target[id] = !target[id];
+          renderCurrentTree();
+          return;
+        }
+
+        const row = event.target.closest(&#x27;[data-tree-type]&#x27;);
+        if (row &amp;&amp; row.dataset.treeType === &#x27;graph&#x27;) openGraph(row.dataset.id);
+      });
+
+      root.addEventListener(&#x27;input&#x27;, event =&gt; {
+        if (event.target.id === &#x27;zk-new-case-name&#x27;) {
+          updateNewCaseNameValidation();
+          return;
+        }
+        if (event.target.id === &#x27;zk-rename-graph-name&#x27;) {
+          updateRenameGraphValidation();
+          return;
+        }
+        if (event.target.id === &#x27;zk-rename-folder-name&#x27;) {
+          updateFolderRenameValidation();
+          return;
+        }
+        if (event.target.id === &#x27;zk-parent-search&#x27;) {
+          state.parentSearchTerm = event.target.value;
+          renderParentTree();
+          return;
+        }
+        if (event.target.id === &#x27;zk-move-parent-search&#x27;) {
+          state.moveParentSearchTerm = event.target.value;
+          renderMoveParentTree();
+          return;
+        }
+        if (event.target.id === &#x27;zk-search-input&#x27;) {
+          els.searchClear.hidden = !event.target.value;
+        }
+      });
+
+      els.searchInput.addEventListener(&#x27;keydown&#x27;, handleSearchKeydown);
+
+      els.newCaseName.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        if (event.key === &#x27;Enter&#x27;) submitNewCase();
+      });
+
+      els.renameGraphName.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        if (event.key === &#x27;Enter&#x27;) submitRenameGraph();
+      });
+
+      els.renameFolderName.addEventListener(&#x27;keydown&#x27;, event =&gt; {
+        if (event.key === &#x27;Enter&#x27;) submitRenameFolder();
+      });
+
+      renderCurrentTree();
+    })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>
